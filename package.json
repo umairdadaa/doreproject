@@ -18,6 +18,7 @@
     "my-react-app": "file:",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-parallax-mouse": "^2.1.0",
     "sass": "^1.83.0",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
