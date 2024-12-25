@@ -8,6 +8,7 @@ import InnovativeCraftsmanship from "@/components/Artist/InnovativeCraftsmanship
 import Philosophy from "@/components/Artist/Philosophy";
 import SixGenerations from "@/components/Artist/SixGenerations";
 import DialogueOfCultures from '@/components/Artist/DialogueOfCultures';
+import Header from '@/components/Header';
 
 const components = [
   { id: 1, Component: Heritage },
@@ -57,7 +58,7 @@ const ArtistPage = () => {
       x: direction === 'left' ? '-120%' : direction === 'right' ? '120%' : '0%',
       y: direction === 'bottom' ? '120%' : '0%',
       scale: 0.9,
-      rotate: direction === 'bottom' ? -15 : 0, 
+      rotate: direction === 'bottom' ? -15 : 0,
       opacity: 0,
       filter: 'blur(12px)',
       boxShadow: '0px 15px 45px rgba(0, 0, 0, 0.4)',
@@ -66,7 +67,7 @@ const ArtistPage = () => {
     center: {
       x: 0,
       y: 0,
-      scale: 1, 
+      scale: 1,
       rotate: 0,
       opacity: 1,
       filter: 'blur(0px)',
@@ -77,7 +78,7 @@ const ArtistPage = () => {
       x: direction === 'left' ? '120%' : direction === 'right' ? '-120%' : '0%',
       y: direction === 'bottom' ? '-120%' : '0%',
       scale: 0.9,
-      rotate: direction === 'bottom' ? 15 : 0, 
+      rotate: direction === 'bottom' ? 15 : 0,
       opacity: 0,
       filter: 'blur(8px)',
       boxShadow: '0px -15px 30px rgba(0, 0, 0, 0.2)',
@@ -94,7 +95,8 @@ const ArtistPage = () => {
     transition: 'transform 0.1s ease-out', // Smooth transition
   };
 
-  return (
+  return (<>
+    <Header />
     <div style={{ overflow: 'hidden', height: '100vh', position: 'relative', background: '#111' }}>
       <motion.div
         key={currentIndex}
@@ -121,6 +123,7 @@ const ArtistPage = () => {
         <Component />
       </motion.div>
     </div>
+  </>
   );
 };
 
