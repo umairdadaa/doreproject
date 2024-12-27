@@ -12,7 +12,9 @@
   "dependencies": {
     "@react-three/drei": "^9.114.6",
     "@react-three/fiber": "^8.17.10",
+    "@react-three/postprocessing": "^2.16.5",
     "@studio-freight/lenis": "^1.0.42",
+    "@types/three": "^0.171.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^11.15.0",

@@ -15,7 +15,7 @@ import { Scene } from "./Scene";
 
 export const scenes = [
   {
-    path: "models/cybertruck_scene.glb",
+    path: "models/perfume_bottle.glb",
     mainColor: "#f9c0ff",
     name: "Fragrances",
     description:
@@ -24,17 +24,17 @@ export const scenes = [
     range: 660,
   },
   {
-    path: "models/model3_scene.glb",
+    path: "models/perfume_bottle2.glb",
     mainColor: "#c0ffe1",
-    name: "Model 3",
+    name: "Perfumes",
     description: "The car of the future",
     price: 29740,
     range: 576,
   },
   {
-    path: "models/semi_scene.glb",
+    path: "models/cybertruck_scene.glb",
     mainColor: "#ffdec0",
-    name: "Semi",
+    name: "Cybertruck",
     description: "The Future of Trucking",
     price: 150000,
     range: 800,
@@ -140,7 +140,7 @@ export const Experience = () => {
       <Environment preset={"city"} />
       <CameraHandler slideDistance={slideDistance} />
       {/* MAIN WORLD */}
-      <group>
+      {/* <group>
         <mesh position-y={viewport.height / 2 + 1.5}>
           <sphereGeometry args={[1, 32, 32]} />
           <MeshDistortMaterial color={scenes[0].mainColor} speed={3} />
@@ -173,7 +173,7 @@ export const Experience = () => {
         infiniteGrid
         fadeDistance={50}
         fadeStrength={5}
-      />
+      /> */}
       {scenes.map((scene, index) => (
         <mesh
           key={index}

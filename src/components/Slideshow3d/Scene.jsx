@@ -67,16 +67,16 @@ export const Scene = ({ mainColor, path, ...props }) => {
           <Sphere scale={15}>
             <meshBasicMaterial color={mainColor} side={THREE.BackSide} />
           </Sphere>
-          <Lightformer
+          {/* <Lightformer
             position={[5, 0, -5]}
             form="rect" // circle | ring | rect (optional, default = rect)
             intensity={1} // power level (optional = 1)
             color="red" // (optional = white)
             scale={[3, 5]} // Scale it any way you prefer (optional = [1, 1])
             target={[0, 0, 0]}
-          />
+          /> */}
 
-          <Lightformer
+          {/* <Lightformer
             position={[-5, 0, 1]}
             form="circle" // circle | ring | rect (optional, default = rect)
             intensity={1} // power level (optional = 1)
@@ -100,7 +100,7 @@ export const Scene = ({ mainColor, path, ...props }) => {
             color="purple" // (optional = white)
             scale={[10, 5]} // Scale it any way you prefer (optional = [1, 1])
             target={[0, 0, 0]}
-          />
+          /> */}
         </Environment>
       </group>
     </>
