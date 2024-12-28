@@ -1,7 +1,77 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* 
+
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: "Irish Grover", serif;
+  font-weight: 200;
+}
+
+i {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background: #ab3a1c;
+  display: grid;
+  place-items: center;
+  color: white;
+  font-size: 40px;
+  z-index: 100;
+}
+
+h1 {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-shadow: 0 3px 11px rgba(0, 0, 0, 0.17);
+  z-index: 100;
+  font-size: 70px;
+  color: white;
+}
+
+.left {
+  position: absolute;
+  left: 3%;
+  top: 47%;
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.right {
+  position: absolute;
+  left: 92%;
+  top: 47%;
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  cursor: pointer;
+  z-index: 100;
+}
+
+/* Scrollbar Customization */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+html,
+body {
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Tailwind Base Overrides */
+/*
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -28,7 +98,7 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-    --radius: 0.5rem
+    --radius: 0.5rem;
   }
   .dark {
     --background: 0 0% 3.9%;
@@ -54,9 +124,10 @@
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%
+    --chart-5: 340 75% 55%;
   }
 }
+
 @layer base {
   * {
     @apply border-border;
@@ -65,24 +136,4 @@
     @apply bg-background text-foreground;
   }
 }
-/* Hide scrollbar for all scrollable content */
-
-  /* scrollbar-width: none; For Firefox
-  /* -ms-overflow-style: none; For Internet Explorer and Edge */
-
-/* html::-webkit-scrollbar, */
-/* body::-webkit-scrollbar { */
-  /* display: none; For Chrome, Safari, and Opera */
-/* } */
- /* */ 
-
- html::-webkit-scrollbar, body::-webkit-scrollbar {
-   display: none; 
-   -ms-overflow-style: none;
-  }
-
-
- *{
-  margin: 0;
-  padding: 0;
- }
+*/
