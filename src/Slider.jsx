@@ -4,6 +4,7 @@ import { useMotionValue } from "motion/react";
 import { useState } from "react";
 import { Gltf, OrbitControls, Environment, Loader } from '@react-three/drei'
 import Ring from "./Ring";
+import RevealImage from "./components/RevealImage";
 
 export default function Slider() {
   // FULLSCREEN MODE
@@ -77,11 +78,11 @@ export default function Slider() {
         }}
       >
         {/* RevealImage component is not defined, you may need to import it or implement it */}
-        {/* <RevealImage
+        <RevealImage
           imageTexture={currentimage}
           revealProgress={revealProgress}
           isFullScreen={isFullScreen}
-        /> */}
+        />
 
         <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI} />
         <group position={[0, -0.25, 2]}>

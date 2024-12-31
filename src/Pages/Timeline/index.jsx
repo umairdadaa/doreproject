@@ -7,6 +7,7 @@ import TwentyTwentyTwo from '@/components/Timeline/TwentyTwentyTwo';
 import TwentyTwentyThree from '@/components/Timeline/TwentyTwentyThree';
 import TwentyTwentyFour from '@/components/Timeline/TwentyTwentyFour';
 import MouseCanvas from '@/components/MouseCanvas';
+import MyCanvas from "@/Scene/MyCanvas.jsx"
 
 const components = [
   { id: 1, Component: TwentyTwentyOne },
@@ -76,6 +77,7 @@ const Timeline = () => {
 
   return (
     <div style={{ overflow: 'hidden', height: '100vh', position: 'relative', background: '#111' }}>
+      <MyCanvas/>
       <MouseCanvas/>
       <motion.div
         key={currentIndex}

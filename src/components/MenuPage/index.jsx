@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useGLTF } from '@react-three/drei';
 
 const Logo3D = () => {
-    const { scene } = useGLTF('/DORE GLB (1).glb');
+    const { scene } = useGLTF('/models/dore.glb');
     return <primitive object={scene} scale={2} />;
 };
 
@@ -21,7 +21,7 @@ const Header = () => {
     const menus = [
         {
             title: "The Mansion",
-            submenus: [{name:"Artist", link:"/artist"}, {name:"Family and Heritage"}, {name:"Innovative Craftsmanship"}, {name:" Timeline", link:"/timeline"}],
+            submenus: [{name:"Artist", link:"/artist"}, {name:"Family and Heritage", link:"/artist#family-and-heritage"}, {name:"Innovative Craftsmanship"}, {name:" Timeline", link:"/timeline"}],
         },
         {
             title: "Annual Lady Bug",

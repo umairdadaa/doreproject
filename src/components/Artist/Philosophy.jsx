@@ -9,14 +9,7 @@ const Philosophy = () => {
   }, []);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        width: "100vw",
-        height: "100vh",
-        overflow: "hidden",
-      }}
-    >
+    <div style={{ display: "flex", width: "100vw", height: "100vh", overflow: "hidden", alignItems:"center"}} className='bg-transparent z-50' >
       <div
         style={{
           width: "50vw",
@@ -32,7 +25,7 @@ const Philosophy = () => {
           transitionDelay: "0.5s",
         }}
       >
-        <h1
+        <h2
           style={{
             color: "#ab3a1c",
             fontFamily: '"Sargie", Sans-serif',
@@ -42,7 +35,7 @@ const Philosophy = () => {
           }}
         >
           Philosophy
-        </h1>
+        </h2>
         <p
           style={{
             color: "#4a4c56",
@@ -80,8 +73,8 @@ const Philosophy = () => {
       </div>
       <div
         style={{
-          height: "100vh",
-          width: "50vw",
+          height: "90vh",
+          width: "40vw",
           transform: animate ? "translateX(0)" : "translateX(-100%)",
           transition: "transform 1s ease-in-out",
         }}
