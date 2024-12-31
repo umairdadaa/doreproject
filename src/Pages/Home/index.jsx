@@ -5,6 +5,7 @@ import { LocomotiveScrollProvider } from 'react-locomotive-scroll';
 import Shop from '@/components/Shop';
 import GlobalStyles from '@/styles/GlobalStyles';
 import { dark } from "@/styles/Themes";
+import MouseCanvas from '@/components/MouseCanvas';
 
 const Home = () => {
     const containerRef = useRef(null);
@@ -40,6 +41,7 @@ const Home = () => {
             containerRef={containerRef}
         >
             <main className="App" data-scroll-container ref={containerRef}>
+                    <MouseCanvas/>
                 <AnimatePresence>
                     <Section id="home">
                         <Suspense fallback={<></>}>

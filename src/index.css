@@ -137,3 +137,47 @@ body {
   }
 }
 */
+
+/* Butterfly.css */
+/* Butterfly.css */
+.butterfly {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wing {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: #805cb7;
+  border-radius: 50%;
+  transform-origin: center;
+  animation: wing-flap 0.5s ease-in-out infinite;
+}
+
+.wing .bit {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  /* background-color: #fff; */
+  border-radius: 50%;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@keyframes wing-flap {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(25deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}

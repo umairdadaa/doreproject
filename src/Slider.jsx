@@ -69,7 +69,7 @@ export default function Slider() {
       <h1 id="bottom-text">Signature Collection</h1>
 
       <Canvas
-        className="z-10"
+        className="z-10 Poppins"
         style={{
           width: "100vw",
           height: "100vh",

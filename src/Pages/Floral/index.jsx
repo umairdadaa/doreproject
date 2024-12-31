@@ -1,9 +1,9 @@
 'use client'
-import React from 'react'
+import Slideshow3d from '@/components/Floral/Slidershow3d'
 
 const Floral = () => {
   return (
-    <React.Fragment>Floral </React.Fragment>
+   <Slideshow3d/>
   )
 }
 

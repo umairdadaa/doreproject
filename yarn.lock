@@ -1874,7 +1874,7 @@
     uuid "^9.0.1"
     zustand "^3.7.1"
 
-"@react-three/fiber@^8.17.10", "@react-three/fiber@>=6.0", "@react-three/fiber@>=8.0":
+"@react-three/fiber@*", "@react-three/fiber@^8.17.10", "@react-three/fiber@>=6.0", "@react-three/fiber@>=8.0":
   version "8.17.10"
   resolved "https://registry.npmjs.org/@react-three/fiber/-/fiber-8.17.10.tgz"
   integrity sha512-S6bqa4DqUooEkInYv/W+Jklv2zjSYCXAhm6qKpAQyOXhTEt5gBXnA7W6aoJ0bjmp9pAeaSj/AZUoz1HCSof/uA==
@@ -2216,6 +2216,11 @@
   version "0.1.49"
   resolved "https://registry.npmjs.org/@webgpu/types/-/types-0.1.49.tgz"
   integrity sha512-NMmS8/DofhH/IFeW+876XrHVWel+J/vdcFCHLDqeJgkH9x0DeiwjVd8LcBdaxdG/T7Rf8VUAYsA8X1efMzLjRQ==
+
+"@whatisjery/react-fluid-distortion@^1.3.6":
+  version "1.3.6"
+  resolved "https://registry.npmjs.org/@whatisjery/react-fluid-distortion/-/react-fluid-distortion-1.3.6.tgz"
+  integrity sha512-mPv57QcUHmNiy6eaqkalzkHhzQhok3hQKStJu3GNAdm0v1wbOvanid8SZapNSwi/qSV15F4e8N/2y0ZrRYM1Yw==
 
 abort-controller@^3.0.0:
   version "3.0.0"
@@ -4523,7 +4528,7 @@ lethargy@^1.0.2:
   resolved "https://registry.npmjs.org/lethargy/-/lethargy-1.0.9.tgz"
   integrity sha512-nFM8blpCF9rqIL5mRAaTGc78W8oQixVtsD86jbEPvcI13+lDUYJf3R7DZQQL7tCiBpbGpGKMX2gwJFO9hiaOkg==
 
-leva@^0.9.35:
+leva@*, leva@^0.9.35:
   version "0.9.35"
   resolved "https://registry.npmjs.org/leva/-/leva-0.9.35.tgz"
   integrity sha512-sp/ZbHGrrzM+eq+wIAc9X7C5qFagNERYkwaulKI/xy0XrDPV67jLUSSqTCFSoSc0Uk96j3oephYoO/6I8mZNuw==
@@ -5028,6 +5033,7 @@ ms@2.0.0:
     "@react-three/postprocessing" "^2.16.5"
     "@studio-freight/lenis" "^1.0.42"
     "@types/three" "^0.171.0"
+    "@whatisjery/react-fluid-distortion" "^1.3.6"
     class-variance-authority "^0.7.1"
     clsx "^2.1.1"
     framer-motion "^11.15.0"
@@ -5038,6 +5044,7 @@ ms@2.0.0:
     lucide-react "^0.468.0"
     motion "^11.11.17"
     my-react-app "file:"
+    postprocessing "^6.36.4"
     react "^18.3.1"
     react-dom "^18.3.1"
     react-locomotive-scroll "^0.2.2"
@@ -5469,7 +5476,7 @@ postcss@8.4.38:
     picocolors "^1.0.0"
     source-map-js "^1.2.0"
 
-postprocessing@^6.32.1, postprocessing@>=6.30.0:
+postprocessing@*, postprocessing@^6.32.1, postprocessing@^6.36.4, postprocessing@>=6.30.0:
   version "6.36.4"
   resolved "https://registry.npmjs.org/postprocessing/-/postprocessing-6.36.4.tgz"
   integrity sha512-3fAyBGuLNR7Rg/q+f2SNlsVCI5mDrymvxhOif3tPKEej8M38z4TvwzNZm+RNpRY2tACE7qQUNE5IHyMcqgvlAg==
@@ -5564,7 +5571,7 @@ react-devtools-core@^5.3.1:
     shell-quote "^1.6.1"
     ws "^7"
 
-"react-dom@^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc", "react-dom@^16.8.0 || ^17.0.0 || ^18.0.0", react-dom@^18.0.0, "react-dom@^18.0.0 || ^19.0.0", react-dom@^18.2.0, react-dom@^18.3.1, "react-dom@>= 16.8.0", react-dom@>=16.8.0, react-dom@>=18, react-dom@>=18.0, react-dom@>=18.0.0:
+react-dom@*, "react-dom@^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc", "react-dom@^16.8.0 || ^17.0.0 || ^18.0.0", react-dom@^18.0.0, "react-dom@^18.0.0 || ^19.0.0", react-dom@^18.2.0, react-dom@^18.3.1, "react-dom@>= 16.8.0", react-dom@>=16.8.0, react-dom@>=18, react-dom@>=18.0, react-dom@>=18.0.0:
   version "18.3.1"
   resolved "https://registry.npmjs.org/react-dom/-/react-dom-18.3.1.tgz"
   integrity sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==
@@ -6569,7 +6576,7 @@ three-stdlib@^2.23.4, three-stdlib@^2.29.9:
     fflate "^0.6.9"
     potpack "^1.0.1"
 
-three@^0.171.0, "three@>= 0.138.0", "three@>= 0.151.0", "three@>= 0.157.0 < 0.171.0", "three@>= 0.159.0", three@>=0.125.0, three@>=0.126, three@>=0.126.1, three@>=0.128.0, three@>=0.133, three@>=0.134.0, three@>=0.137, three@>=0.144.0:
+three@*, three@^0.171.0, "three@>= 0.138.0", "three@>= 0.151.0", "three@>= 0.157.0 < 0.171.0", "three@>= 0.159.0", three@>=0.125.0, three@>=0.126, three@>=0.126.1, three@>=0.128.0, three@>=0.133, three@>=0.134.0, three@>=0.137, three@>=0.144.0:
   version "0.171.0"
   resolved "https://registry.npmjs.org/three/-/three-0.171.0.tgz"
   integrity sha512-Y/lAXPaKZPcEdkKjh0JOAHVv8OOnv/NDJqm0wjfCzyQmfKxV7zvkwsnBgPBKTzJHToSOhRGQAGbPJObT59B/PQ==

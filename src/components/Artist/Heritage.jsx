@@ -9,7 +9,7 @@ const Heritage = () => {
   }, []);
 
   return (
-    <div style={{ display: "flex", width: "100vw", height: "100vh", overflow: "hidden" }}>
+    <div style={{ display: "flex", width: "100vw", height: "100vh", overflow: "hidden" }} className='bg-transparent z-50' >
       <div
         style={{
           height: "100vh",
@@ -19,7 +19,7 @@ const Heritage = () => {
         }}
       >
         <img
-          src="/public/images/heritage.png" 
+          src="/public/images/heritage.png"
           alt="Heritage"
           style={{
             height: "100%",

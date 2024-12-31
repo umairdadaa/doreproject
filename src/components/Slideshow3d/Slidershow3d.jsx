@@ -3,6 +3,8 @@ import { Leva } from "leva";
 import { Experience } from "./Experience";
 import { Overlay } from "./Overlay";
 import * as THREE from "three";
+import { EffectComposer } from "@react-three/postprocessing";
+import { Fluid } from "@whatisjery/react-fluid-distortion";
 
 function PinkFloralBackground() {
   const texture = useLoader(THREE.TextureLoader, "images/texture-bg.jpg"); // Replace with your floral image path
