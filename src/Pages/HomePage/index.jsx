@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./HomePage.css";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { Canvas, useThree } from "@react-three/fiber";
 import { SRGBColorSpace } from "three";
 import { EffectComposer } from "@react-three/postprocessing";
 import { Fluid } from "@whatisjery/react-fluid-distortion";

@@ -2,7 +2,7 @@ import { useMemo, useState, useRef, useEffect } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber"
 import { Environment, Float, Gltf, useTexture } from "@react-three/drei";
 import { SRGBColorSpace, Vector3, Euler, Quaternion } from "three";
-import { Bug, Flower, Ring } from "./Models";
+import { Bug, Flower } from "./Models";
 import { lerp } from "three/src/math/MathUtils";
 
 const CollectionPage = ({ show }) => {
