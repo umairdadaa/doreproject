@@ -1,98 +1,140 @@
-import { Canvas } from "@react-three/fiber";
-import { animate } from "motion";
-import { useMotionValue } from "motion/react";
-import { useState } from "react";
-import { Gltf, OrbitControls, Environment, Loader } from '@react-three/drei'
-import Ring from "./Ring";
-import RevealImage from "./components/RevealImage";
+import { Canvas } from '@react-three/fiber';
+import { useState, useRef } from 'react';
+import { Gltf, OrbitControls, Environment, Loader } from '@react-three/drei';
+import Ring from './Ring';
+import useMouseFollow from './utils/useMouseFollow';
+import config from './assets/config.js';
+import TransitioningPlanes from './components/TransitioningPlanes';
+import CircularSlider from './components/TransitioningPlanes';
 
 export default function Slider() {
-  // FULLSCREEN MODE
-  const [isFullScreen, setIsFullScreen] = useState(true);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [nextIndex, setNextIndex] = useState(0);
+  const [transitioning, setTransitioning] = useState(false);
+  const [transitionProgress, setTransitionProgress] = useState(0);
+  const [isDarkMode] = useState(false);
+  const animationRef = useRef(null);
 
-  const [currentimage, setcurrentimage] = useState('./img/image.jpeg')
+  const ringRef = useRef();
+  const activePlaneRef = useRef();
+  const activeRingRef = useRef();
 
-  // DARK/LIGHT MODE
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  useMouseFollow(ringRef, activePlaneRef);
 
-  // REVEAL PROGRESS ANIMATION
-  const [isRevealed, setIsRevealed] = useState(false);
-  const revealProgress = useMotionValue(0);
+  const handleTransition = (direction) => {
+    if (transitioning) return;
 
-  setTimeout(() => {
-    animate(revealProgress, 1, {
-      duration: 2,
-      ease: "easeInOut",
-    });
-    setIsRevealed(true)
-  }, 6000)
+    const newNextIndex =
+      direction === 'next'
+        ? (currentIndex + 1) % config.length
+        : (currentIndex - 1 + config.length) % config.length;
 
-  function Left() {
-    animate(revealProgress, 0, {
-      duration: 2,
-      ease: "easeInOut",
-    });
-    setIsRevealed(false)
+    setNextIndex(newNextIndex);
+    setTransitioning(true);
 
-    setTimeout(() => {
-      setcurrentimage('./img/image2.jpeg')
-      animate(revealProgress, 1, {
-        duration: 2,
-        ease: "easeInOut",
-      });
-      setIsRevealed(true)
-    }, 2500)
-  }
+    let startTime = null;
+    const duration = 50; // Adjusted duration for smoother transition
 
-  function Right() {
-    animate(revealProgress, 0, {
-      duration: 2,
-      ease: "easeInOut",
-    });
-    setIsRevealed(false)
+    const easeInOutCubic = (t) => {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    };
 
-    setTimeout(() => {
-      setcurrentimage('./img/image3.jpeg')
-      animate(revealProgress, 1, {
-        duration: 2,
-        ease: "easeInOut",
-      });
-      setIsRevealed(true)
-    }, 2500)
-  }
+    const animate = (timestamp) => {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+
+      const easedProgress = easeInOutCubic(progress);
+      setTransitionProgress(easedProgress);
+
+      if (progress < 1) {
+        animationRef.current = requestAnimationFrame(animate);
+      } else {
+        setCurrentIndex(newNextIndex);
+        setTransitioning(false);
+        setTransitionProgress(0);
+        animationRef.current = null;
+      }
+    };
+
+    if (animationRef.current) {
+      cancelAnimationFrame(animationRef.current);
+    }
+    animationRef.current = requestAnimationFrame(animate);
+  };
 
   return (
     <>
-      <Loader />
-      <img onClick={() => Left()} className="left" src="img/left-arrow.png" alt="Left arrow" />
-      <img onClick={() => Right()} className="right" src="img/right-arrow.png" alt="Right arrow" />
+      <img
+        onClick={() => handleTransition('prev')}
+        className='left'
+        src='img/left-arrow.png'
+        alt='Left arrow'
+      />
+      <img
+        onClick={() => handleTransition('next')}
+        className='right'
+        src='img/right-arrow.png'
+        alt='Right arrow'
+      />
+      <button className='absolute bottom-44 left-1/2 -translate-x-1/2 px-10 py-4 font-sans border-4 rounded-full z-50 text-white font-bold hover:bg-white/40 hover:text-black transition-colors'>Pre Booking</button>
 
-      <h1 id="bottom-text">Signature Collection</h1>
-
+      <h1 id='bottom-text'>Signature Collection</h1>
+      <Loader/>
       <Canvas
-        className="z-10 Poppins"
+        className='z-10 Poppins'
         style={{
-          width: "100vw",
-          height: "100vh",
-          backgroundColor: isDarkMode ? "#000" : "#F9FAF7",
+          width: '100vw',
+          height: '100vh',
+          backgroundColor: isDarkMode ? '#000' : '#F9FAF7',
         }}
       >
-        {/* RevealImage component is not defined, you may need to import it or implement it */}
-        <RevealImage
-          imageTexture={currentimage}
-          revealProgress={revealProgress}
-          isFullScreen={isFullScreen}
+        {/* <TransitioningPlanes
+          texturePaths={config.map((item) => item.texturePath)}
+          currentIndex={currentIndex}
+          nextIndex={nextIndex}
+          transitioning={transitioning}
+          transitionProgress={transitionProgress}
+          activePlaneRef={activePlaneRef}
+        /> */}
+
+        <spotLight
+          position={[10, 10, 10]}
+          angle={0.15}
+          penumbra={1}
+          decay={0}
+          intensity={Math.PI}
         />
 
-        <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} decay={0} intensity={Math.PI} />
-        <group position={[0, -0.25, 2]}>
-          <Gltf position={[0, 2.45, -1.04]} scale={0.15} src="model.glb" />
+        <group position={[0, -1.25, 1]}>
+          <Gltf position={[0, 3.45, -0.04]} scale={0.15} src='model.glb' />
+        </group>
+
+        <group ref={ringRef} position={[0, -0.8, 1]}>
           <Ring frame={'#fff0f0'} diamonds={'#ffffff'} scale={0.055} />
         </group>
 
-        <OrbitControls enableRotate={false} enableZoom={false} enablePan={false} minPolarAngle={0} maxDistance={17} />
+        <TransitioningPlanes
+          texturePaths={config.map((item) => item.texturePath)} // Extract texture paths
+          modelPaths={config.map((item) => item.modelPath)} // Extract model paths
+          modelTransforms={config.map((item) => item.modelTransform)} // Extract model transforms
+          currentIndex={currentIndex}
+          nextIndex={nextIndex}
+          transitioning={transitioning}
+          transitionDuration={1}
+          activePlaneRef={activePlaneRef}
+          activeRingRef={activeRingRef}
+        />
 
-        <Environment preset="sunset" />
+        <OrbitControls
+          enableRotate={false}
+          // enableZoom={false}
+          enablePan={false}
+          minPolarAngle={0}
+          maxDistance={17}
+        />
+
+        <Environment preset='sunset' />
       </Canvas>
     </>
   );
