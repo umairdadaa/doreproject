@@ -19,7 +19,7 @@ const Heritage = () => {
         }}
       >
         <img
-          src="/public/images/heritage.png"
+          src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/images/heritage.png"
           alt="Heritage"
           style={{
             height: "100%",

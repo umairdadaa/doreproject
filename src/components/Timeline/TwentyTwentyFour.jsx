@@ -75,7 +75,7 @@ const TwentyTwentyFour = () => {
         }}
       >
         <img
-          src="/public/images/TwentyTwentyTwo.png"
+          src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/images/TwentyTwentyTwo.png"
           alt="Philosophy"
           style={{
             height: "100%",

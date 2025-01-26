@@ -4,13 +4,12 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { SRGBColorSpace } from "three";
 import { EffectComposer } from "@react-three/postprocessing";
 import { Fluid } from "@whatisjery/react-fluid-distortion";
-import { useNavigate } from "react-router-dom";
-import CollectionPage from "../CollectionPage"; // Import the CollectionPage component
+import CollectionPage from "../CollectionPage";
 
 const HomePage = () => {
     const [enter, setEnter] = useState(false);
     const [progress, setProgress] = useState(0);
-    const [showCollection, setShowCollection] = useState(false); // State to toggle CollectionPage
+    const [showCollection, setShowCollection] = useState(false);
 
     useEffect(() => {
         const video1 = document.getElementById('home-video');
@@ -20,9 +19,13 @@ const HomePage = () => {
             const progress1 = video1.readyState >= 4 ? 50 : 0; // 50% if video1 is ready
             const progress2 = video2.readyState >= 4 ? 50 : 0; // 50% if video2 is ready
             setProgress(progress1 + progress2); // Combined progress
-            if(progress1 + progress2 >= 100 ) {
-                const pt = document.getElementById('pt');
-                pt.style.display = 'none';
+            if (progress1 + progress2 >= 100) {
+                const pp = document.getElementById('pt');
+                const pb = document.getElementById('progress-bar');
+                const pt = document.getElementById('enter');
+                pp.style.display = 'none';
+                pb.classList.add('show-enter');
+                pt.classList.add('show-enter-keyword')
             }
         }
 
@@ -70,37 +73,31 @@ const HomePage = () => {
     }, [enter]);
     const vid = useRef();
 
-    const handleShowCollection = () => {
-        setShowCollection(true); // Show the CollectionPage
-    };
-
-    if (showCollection) {
-        return <CollectionPage />; // Render the CollectionPage component
-    }
-
     return (
-        <mesh>
         <div className="w-screen h-screen overflow-hidden  relative">
-                <div id="top" className="bg-[#ab3a1c] w-screen h-1/2 absolute top-0 left-0"></div>
-                <div id="bottom" className="bg-[#ab3a1c] w-screen h-1/2 absolute top-1/2 left-0"></div>
-                <div className="w-screen h-screen absolute top-0 left-0 -z-10 isolate" id="main">
-                    <video
-                        src="/Final Website Look/Transition A.mp4"
-                        id="videoTransition"
-                        className="hidden"
-                        preload="auto"
-                        muted
-                    />
-                    <video
-                        src="/Final Website Look/Scene 1 Birds.mp4"
-                        id="home-video"
-                        className="hidden"
-                        preload="auto"
-                        muted
-                        ref={vid}
-                    />
-                    <Canvas className="absolute top-0 left-0 w-screen h-screen z-10 pointer-events-auto">
-                        {progress >= 100 && <Video onShowCollection={handleShowCollection} />}
+            <div id="top" className="bg-[#ab3a1c] w-screen h-1/2 absolute top-0 left-0"></div>
+            <div id="bottom" className="bg-[#ab3a1c] w-screen h-1/2 absolute top-1/2 left-0"></div>
+            <div className="w-screen h-screen absolute top-0 left-0 -z-10 isolate" id="main">
+                <video
+                    src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Transition%20A.mp4"
+                    id="videoTransition"
+                    className="hidden"
+                    crossOrigin="anonymous"
+                    autoPlay
+                    muted
+                />
+                <video
+                    src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Scene%201%20Birds.mp4"
+                    id="home-video"
+                    className="hidden"
+                    crossOrigin="anonymous"
+                    autoPlay
+                    muted
+                    ref={vid}
+                />
+
+                    <Canvas className={ `absolute top-0 left-0 w-screen h-screen z-10 pointer-events-auto ${showCollection ? "invisible" : "visible"}` }>
+                        {progress >= 100 && <Video setShowCollection={setShowCollection}/>}
                         <EffectComposer>
                             <Fluid
                                 rainbow={false}
@@ -115,40 +112,40 @@ const HomePage = () => {
                             />
                         </EffectComposer>
                     </Canvas>
-                    <button
-                        className="absolute bottom-10 left-1/2 -translate-x-1/2 bg-white/20 font-sans font-bold p-4 rounded-full border-2 hover:bg-white/40 pointer-events-auto z-20"
-                        id="c"
-                    >
-                        Collections
-                    </button>
-                </div>
-                <div id="logo">
-                <img id="bug" src="bug.png" width={100} height={100} />
-                <img id="r" src="logo/r.png" width={100} height={100} />
-                <img id="e" src="logo/e.png" width={100} height={100} />
-                <img id="e-bar" src="logo/e-bar.png" width={100} height={100} />
-                <img id="o" src="logo/o.png" width={100} height={100} />
-                <div id="d" className="w-screen h-screen absolute top-0 left-0 relative">
-                    <img id="d-up" src="logo/d-up.png" width={100} height={100} />
-                    <img id="d-down" src="logo/d-down.png" width={100} height={100} />
-                </div>
-                </div>
-                <div id="progress-button" className="w-screen h-screen absolute top-0 left-0">
-                    <div id="progress-bar" onClick={() => setEnter(true)}>
-                        <div id="progress" style={{ width: `${progress}%` }}></div>
-                    </div>
-                    <div id="pt" className="absolute bottom-64 left-1/2 -translate-x-1/2 font-bold text-4xl font-sans text-white">
-                        {progress.toFixed(0)}%
-                    </div>
-                    <div id="enter" className="pointer-events-none">Enter World</div>
+
+                <CollectionPage show={showCollection}/>
+
+                <button
+                    className="absolute bottom-10 left-1/2 -translate-x-1/2 bg-white/20  font-bold p-4 rounded-full border-2 hover:bg-white/40 pointer-events-auto z-20"
+                    id="c"
+                >
+                    Collections
+                </button>
+            </div>
+            <div id="logo">
+                <img id="bug" src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/bug.png" width={100} height={100} />
+                <img id="r" src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/logo/r.png" width={100} height={100} />
+                <img id="e" src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/logo/e.png" width={100} height={100} />
+                <img id="e-bar" src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/logo/e-bar.png" width={100} height={100} />
+                <img id="o" src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/logo/o.png" width={100} height={100} />
+                <div id="d" className="w-screen h-screen absolute top-0 left-0">
+                    <img id="d-up" src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/logo/d-up.png" width={100} height={100} />
+                    <img id="d-down" src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/logo/d-down.png" width={100} height={100} />
                 </div>
             </div>
-        </mesh>
-    );
+            <div id="progress-button" className="w-screen h-screen absolute top-0 left-0">
+                <div id="progress-bar" onClick={() => setEnter(true)}>
+                    <div id="progress" style={{ width: `${progress}%` }}></div>
+                </div>
+                <div id="pt" className="absolute bottom-64 left-1/2 -translate-x-1/2 font-bold text-4xl  text-white">{progress.toFixed(0)}%</div>
+                <div id="enter" className="pointer-events-none">Enter World</div>
+            </div>
+        </div>
+    )
 };
+const Video = ({ setShowCollection }) => {
 
-const Video = ({ onShowCollection }) => {
-    const [video, setVideo] = useState(() => {
+    const [video] = useState(() => {
         const vid = document.getElementById("home-video");
         vid.crossOrigin = "Anonymous";
         vid.muted = true;
@@ -156,7 +153,7 @@ const Video = ({ onShowCollection }) => {
         return vid;
     });
 
-    const [videoTransition, setVideoTransition] = useState(() => {
+    const [videoTransition] = useState(() => {
         const vid = document.getElementById("videoTransition");
         vid.crossOrigin = "Anonymous";
         vid.muted = true;
@@ -166,21 +163,20 @@ const Video = ({ onShowCollection }) => {
 
     useEffect(() => {
         const c = document.getElementById("c");
-        c.addEventListener("click", () => {
+        c.addEventListener('click', () => {
             setTimeout(() => {
                 ref.current.position.z = 10;
             }, 500);
             videoTransition.play();
-            videoTransition.addEventListener("ended", () => {
-                onShowCollection(); // Show the CollectionPage
+            videoTransition.addEventListener('ended', () => {
+                setShowCollection(true);
             });
         });
-    }, [onShowCollection]);
+    }, []);
 
     const refTransition = useRef();
     const ref = useRef();
     const { viewport } = useThree();
-    const navigate = useNavigate();
 
     useEffect(() => {
         if (ref.current) {
@@ -192,28 +188,25 @@ const Video = ({ onShowCollection }) => {
         }
     }, [ref.current, refTransition.current]);
 
-    // useFrame(({ pointer }) => {
-    //     if(!ref.current || !refTransition.current) return;
-        // ref.current.position.x = pointer.x;
-        // ref.current.position.y = pointer.y;
-    // });
-
     return (
-        <group>
-            <mesh ref={ref} position={[0, 0, 0.1]}>
-                <planeGeometry args={[1, 1]} />
-                <meshBasicMaterial>
-                    <videoTexture args={[video]} attach="map" colorSpace={SRGBColorSpace} />
-                </meshBasicMaterial>
-            </mesh>
-            <mesh ref={refTransition} position={[0, 0, 0]}>
-                <planeGeometry args={[1, 1]} />
-                <meshBasicMaterial>
-                    <videoTexture args={[videoTransition]} attach="map" colorSpace={SRGBColorSpace} />
-                </meshBasicMaterial>
-            </mesh>
-        </group>
-    );
-};
+        <>
+            <group>
+                <mesh ref={ref} position={[0, 0, 0.1]}>
+                    <planeGeometry args={[1, 1]} />
+                    <meshBasicMaterial  >
+                        <videoTexture args={[video]} attach="map" colorSpace={SRGBColorSpace} />
+                    </meshBasicMaterial>
+                </mesh>
+
+                <mesh ref={refTransition} position={[0, 0, 0]}>
+                    <planeGeometry args={[1, 1]} />
+                    <meshBasicMaterial >
+                        <videoTexture args={[videoTransition]} attach="map" colorSpace={SRGBColorSpace} />
+                    </meshBasicMaterial>
+                </mesh>
+            </group>
+        </>
+    )
+}
 
 export default HomePage;

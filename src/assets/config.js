@@ -1,7 +1,7 @@
 const config = [
   {
-    texturePath: "/img/image3.jpeg",
-    modelPath: "/3-stone-transformed.glb",
+    texturePath: "https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/img/image3.jpeg",
+    modelPath: "https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/3-stone-transformed.glb",
     description: "Model 1 Description",
     modelTransform: {
       position: [0, 0, 0],
@@ -10,8 +10,8 @@ const config = [
     }
   },
   {
-    texturePath: "/img/image.jpeg",
-    modelPath: "/doji_diamond_ring.glb",
+    texturePath: "https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/img/image.jpeg",
+    modelPath: "https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/doji_diamond_ring.glb",
     description: "Model 2 Description",
     modelTransform: {
       position: [0, 0, 0],
@@ -20,8 +20,8 @@ const config = [
     }
   },
   {
-    texturePath: "/img/image2.jpeg",
-    modelPath: "/nenya_galadriels_ring.glb",
+    texturePath: "https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/img/image2.jpeg",
+    modelPath: "https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/nenya_galadriels_ring.glb",
     description: "Model 3 Description",
     modelTransform: {
       position: [0, 0, 0],

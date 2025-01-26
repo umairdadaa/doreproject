@@ -68,13 +68,13 @@ export default function Slider() {
       <img
         onClick={() => handleTransition('prev')}
         className='left'
-        src='img/left-arrow.png'
+        src='https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/img/left-arrow.png'
         alt='Left arrow'
       />
       <img
         onClick={() => handleTransition('next')}
         className='right'
-        src='img/right-arrow.png'
+        src='https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/img/right-arrow.png'
         alt='Right arrow'
       />
       <button className='absolute bottom-44 left-1/2 -translate-x-1/2 px-10 py-4 font-sans border-4 rounded-full z-50 text-white font-bold hover:bg-white/40 hover:text-black transition-colors'>Pre Booking</button>
@@ -107,7 +107,7 @@ export default function Slider() {
         />
 
         <group position={[0, -1.25, 1]}>
-          <Gltf position={[0, 3.45, -0.04]} scale={0.15} src='model.glb' />
+          <Gltf position={[0, 3.45, -0.04]} scale={0.15} src='https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/model.glb' />
         </group>
 
         <group ref={ringRef} position={[0, -0.8, 1]}>

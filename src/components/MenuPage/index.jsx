@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useGLTF } from '@react-three/drei';
 
 const Logo3D = () => {
-    const { scene } = useGLTF('/models/dore.glb');
+    const { scene } = useGLTF('https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/models/dore.glb');
     return <primitive object={scene} scale={2} />;
 };
 

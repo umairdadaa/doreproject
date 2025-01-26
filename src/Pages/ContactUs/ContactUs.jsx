@@ -93,12 +93,12 @@ const ContactUs = () => {
           <div className='flex container max-w-5xl items-center flex-col py-20'>
             <h1 className='font-bold text-5xl font-serif'>ILS NOUS ONT FAT CONFIANCE</h1>
             <div className='flex py-8 w-full gap-2 justify-between'>
-              <img className='w-[52px]' src="/public/images/elf.webp" alt="" />
-              <img className='w-[52px]' src="/public/images/x-factor.webp" alt="" />
-              <img className='w-[52px]' src="/public/images/warner.webp" alt="" />
-              <img className='w-[52px]' src="/public/images/paramount.webp" alt="" />
-              <img className='w-[52px]' src="/public/images/honor.webp" alt="" />
-              <img className='w-[52px]' src="/public/images/tik-tok.webp" alt="" />
+              <img className='w-[52px]' src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/images/elf.webp" alt="" />
+              <img className='w-[52px]' src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/images/x-factor.webp" alt="" />
+              <img className='w-[52px]' src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/images/warner.webp" alt="" />
+              <img className='w-[52px]' src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/images/paramount.webp" alt="" />
+              <img className='w-[52px]' src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/images/honor.webp" alt="" />
+              <img className='w-[52px]' src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/images/tik-tok.webp" alt="" />
             </div>
           </div>
           <div className="w-full pt-14 container mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 text-center">

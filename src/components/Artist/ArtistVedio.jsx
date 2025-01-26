@@ -33,13 +33,13 @@ const ArtistBackgroundVedio = () => {
 
       {/* Background video */}
       <div className="absolute top-0 left-0 w-screen h-screen z-40 pointer-events-none">
-        <video
+        {/* <video
         //   ref={videoRef}
           muted
           src="/videos/is/output.webm"
           className="w-full h-full object-fill bg-transparent"
           onCanPlayThrough={handleCanvasLoaded}
-        />
+        /> */}
       </div>
 
       {/* Canvas */}
@@ -70,7 +70,7 @@ const ArtistBackgroundVedio = () => {
 const Background = () => {
   const [video] = useState(() => {
     const vid = document.createElement("video");
-    vid.src = "/ArtistBg.mp4";
+    vid.src = "https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/ArtistBg.mp4";
     vid.crossOrigin = "Anonymous";
     vid.loop = true;
     vid.muted = true;

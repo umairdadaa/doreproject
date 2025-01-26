@@ -58,7 +58,7 @@ const SixGenerations = () => {
         }}
       >
         <img
-          src="/public/images/SixGenerations.png"
+          src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/images/SixGenerations.png"
           alt="Six Generations"
           style={{
             height: "100%",

@@ -104,7 +104,7 @@ const Scene = ({ startAnimation }) => {
 const Background = forwardRef((_props, ref) => {
   const [video] = useState(() => {
     const vid = document.createElement("video");
-    vid.src = "/bgNew.mp4";
+    vid.src = "https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/bgNew.mp4";
     vid.crossOrigin = "Anonymous";
     vid.loop = true;
     vid.muted = true;
@@ -128,7 +128,7 @@ const Background = forwardRef((_props, ref) => {
 });
 
 const DoreModel = forwardRef((props, ref) => {
-  const { nodes, materials } = useGLTF('/dore.glb')
+  const { nodes, materials } = useGLTF('https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/dore.glb')
   return (
     <group {...props} dispose={null} ref={ref}>
       <mesh geometry={nodes.Shape2.geometry}
@@ -143,4 +143,4 @@ const DoreModel = forwardRef((props, ref) => {
 
 export default VideoBackgroundPage;
 
-useGLTF.preload("/dore.glb");
+useGLTF.preload("https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/dore.glb");

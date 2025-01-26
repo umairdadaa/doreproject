@@ -1,6 +1,19 @@
+@font-face {
+    font-family: 'Asen';
+    src: url('/fonts/Dore-Fonts/AsenPro-Bold.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+div {
+    font-family:  'Asen';
+}
+#enter {
+    font-family:  'Asen';
+}
+
 img {
     position: absolute;
-    top: 40%;
+    top: 35%;
     z-index: 50;
 }
 
@@ -12,19 +25,20 @@ img {
 
 #d-down {
     left: -10%;
+    scale: 1.02;
     animation: d-down 2s ease-in-out 2s forwards;
     transform: rotate(90deg) translateX(50%);
 }
 
 #d {
-    transform-origin: 50% 45%;
+    transform-origin: 51% 42%;
     animation: d 1s ease-in-out 4s forwards;
 }
 
 #o {
     left: 45%;
     opacity: 0;
-    scale: 1.1;
+    scale: 1.15;
     animation: o 1s ease-in-out 5s forwards;
 }
 
@@ -59,10 +73,10 @@ img {
 }
 
 #e {
-    top: 39%;
+    top: 34.0%;
     left: 56%;
     opacity: 0;
-    scale: 0.8;
+    scale: 0.83;
     animation: e 1s ease-in-out 7s forwards;
 }
 
@@ -79,7 +93,7 @@ img {
 }
 
 #e-bar {
-    top: 37%;
+    top: 32%;
     left: 56%;
     opacity: 0;
     scale: 0.5;
@@ -119,7 +133,7 @@ img {
     }
 
     100% {
-        right: 46%;
+        right: 44%;
     }
 }
 
@@ -129,7 +143,7 @@ img {
     }
 
     100% {
-        left: 46%;
+        left: 48.0%;
     }
 }
 
@@ -147,8 +161,11 @@ img {
     display: flex;
     align-items: start;
     justify-items: center;
-    animation: progress-bar 1s ease-in-out 9s forwards;
     cursor: pointer;
+}
+
+.show-enter {
+    animation: progress-bar 1s ease-in-out forwards;
 }
 
 @keyframes progress-bar {
@@ -197,7 +214,9 @@ img {
     left: 50%;
     opacity: 0;
     transform: translate(-50%, -50%);
-    animation: enter 1s ease-in-out 9s forwards;
+}
+.show-enter-keyword {
+    animation: enter 1s ease-in-out forwards;
 }
 
 @keyframes enter {

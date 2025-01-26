@@ -57,7 +57,7 @@ const DialogueOfCultures = () => {
       }}
     >
         <img
-          src="/public/images/DialogueOfCultures.png" 
+          src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/images/DialogueOfCultures.png" 
           alt="A Dialogue of Cultures"
           style={{
             height: "100%",

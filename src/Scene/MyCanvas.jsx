@@ -10,7 +10,7 @@ const TexturedPlane = () => {
   useEffect(() => {
     // Load the texture and apply it to the plane
     const textureLoader = new THREE.TextureLoader();
-    textureLoader.load('/shader-img/bg2.png', (texture) => {
+    textureLoader.load('https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/shader-img/bg2.png', (texture) => {
       if (planeRef.current) {
         // Scale down the texture
         texture.repeat.set(1, 1); // Scale to half size (adjust as needed)

@@ -161,14 +161,14 @@ export default function Ring({ frame, diamonds, ...props }) {
     >
       {/* <ModelTwo ref={ringRef} rotation={[Math.PI / 2, 0, 0]} /> */}
       <ModelOne ref={ringRef} rotation={[0, Math.PI , 0]} />
-      <Gltf ref={ring2} src='doji_diamond_ring.glb' scale={10.0} rotation={[Math.PI /2, Math.PI, 0]}/>
+      <Gltf ref={ring2} src='https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/doji_diamond_ring.glb' scale={10.0} rotation={[Math.PI /2, Math.PI, 0]}/>
       <Bug ref={ring3} />
     </Float>
   );
 }
 
 const ModelOne = forwardRef((props, ref) => {
-  const { nodes, materials } = useGLTF('/models/modelOne.glb')
+  const { nodes, materials } = useGLTF('https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/models/modelOne.glb')
   return (
     <group {...props} dispose={null} ref={ref}>
       <mesh geometry={nodes.mesh_0.geometry} material={nodes.mesh_0.material} />
@@ -177,7 +177,7 @@ const ModelOne = forwardRef((props, ref) => {
 });
 
 const Bug = forwardRef((props, ref) => {
-  const { nodes, materials } = useGLTF('/models/bug 2-transformed.glb')
+  const { nodes, materials } = useGLTF('https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/models/bug 2-transformed.glb')
   return (
     <group dispose={null} ref={ref} scale={0.2} rotation={[Math.PI / 2, Math.PI, 0]}>
       <mesh geometry={nodes.Box002.geometry} material={nodes.Box002.material} />
@@ -189,7 +189,7 @@ const Bug = forwardRef((props, ref) => {
 });
 
 const ModelTwo = forwardRef((props, ref) => {
-  const { nodes, materials } = useGLTF('/models/modelTwo.gltf')
+  const { nodes, materials } = useGLTF('https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/models/modelTwo.gltf')
   return (
     <group {...props} dispose={null} ref={ref}>
       <mesh geometry={nodes.Cube.geometry} material={nodes.Cube.material} position={[-0.204, 0, 0.636]} scale={[0.095, 0.02, 0.095]} />
