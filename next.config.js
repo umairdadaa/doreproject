@@ -1,9 +1,12 @@
 module.exports = {
-    webpack(config) {
+    webpack(config, { isServer }) {
+      if (!isServer) {
         config.optimization.splitChunks = {
-        chunks: 'all',
-        maxSize: 1000000,  // Increase the chunk size limit if needed
+          chunks: 'all',
+          maxSize: 2000000,  // Adjust chunk size limit if necessary
         };
-        return config;
+      }
+      return config;
     },
-};
+  };
+  
