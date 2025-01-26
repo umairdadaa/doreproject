@@ -19,7 +19,7 @@ const InnovativeCraftsmanship = () => {
         }}
       >
         <img
-          src="/public/images/InnovativeCraftsmanship.png" 
+          src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/images/InnovativeCraftsmanship.png" 
           alt="Innovative Craftsmanship"
           style={{
             height: "100%",

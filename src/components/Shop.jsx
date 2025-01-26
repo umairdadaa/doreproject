@@ -4,17 +4,6 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import React, { useLayoutEffect, useRef } from "react";
 import styled from "styled-components";
 
-import img1 from "/public/images/1.webp";
-import img2 from "/public/images/2.webp";
-import img3 from "/public/images/3.webp";
-import img4 from "/public/images/4.webp";
-import img5 from "/public/images/5.webp";
-import img6 from "/public/images/6.webp";
-import img7 from "/public/images/7.webp";
-import img8 from "/public/images/8.webp";
-import img9 from "/public/images/9.webp";
-import img10 from "/public/images/10.webp";
-
 const Section = styled(motion.section)`
   min-height: 100vh;
   height: auto;
@@ -214,16 +203,16 @@ const Shop = () => {
         </p>
       </Left>
       <Right data-scroll ref={Horizontalref}>
-        <Product img={img3} title="Sweatshirts" />
-        <Product img={img4} title="Ethnic Wear" />
-        <Product img={img1} title="Man Basics" />
-        <Product img={img2} title="Tops" />
-        <Product img={img5} title="Blazers" />
-        <Product img={img6} title="Suits" />
-        <Product img={img7} title="Antiques" />
-        <Product img={img8} title="Jewellery" />
-        <Product img={img9} title="Watches" />
-        <Product img={img10} title="Special Edition" />
+        <Product img="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/images/3.webp" title="Sweatshirts" />
+        <Product img="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/images/4.webp" title="Ethnic Wear" />
+        <Product img="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/images/1.webp" title="Man Basics" />
+        <Product img="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/images/2.webp" title="Tops" />
+        <Product img="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/images/5.webp" title="Blazers" />
+        <Product img="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/images/6.webp" title="Suits" />
+        <Product img="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/images/7.webp" title="Antiques" />
+        <Product img="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/images/8.webp" title="Jewellery" />
+        <Product img="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/images/9.webp" title="Watches" />
+        <Product img="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/images/10.webp" title="Special Edition" />
       </Right>
     </Section>
   );

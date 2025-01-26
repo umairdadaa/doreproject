@@ -107,6 +107,6 @@ export const Scene = ({ mainColor, path, ...props }) => {
   );
 };
 
-useGLTF.preload("/models/cybertruck_scene.glb");
-useGLTF.preload("/models/model3_scene.glb");
-useGLTF.preload("/models/semi_scene.glb");
+useGLTF.preload("https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/models/cybertruck_scene.glb");
+useGLTF.preload("https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/models/model3_scene.glb");
+useGLTF.preload("https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/models/semi_scene.glb");

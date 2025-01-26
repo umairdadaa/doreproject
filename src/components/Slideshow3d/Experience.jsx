@@ -15,7 +15,7 @@ import { Scene } from "./Scene";
 
 export const scenes = [
   {
-    path: "models/perfume_bottle.glb",
+    path: "https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/models/perfume_bottle.glb",
     mainColor: "#f9c0ff",
     name: "Fragrances",
     description:
@@ -24,7 +24,7 @@ export const scenes = [
     range: 660,
   },
   {
-    path: "models/perfume_bottle2.glb",
+    path: "https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/models/perfume_bottle2.glb",
     mainColor: "#c0ffe1",
     name: "Perfumes",
     description: "The car of the future",
@@ -32,7 +32,7 @@ export const scenes = [
     range: 576,
   },
   {
-    path: "models/cybertruck_scene.glb",
+    path: "https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/models/cybertruck_scene.glb",
     mainColor: "#ffdec0",
     name: "Cybertruck",
     description: "The Future of Trucking",

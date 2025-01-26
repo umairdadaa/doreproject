@@ -20,7 +20,7 @@ const FamilyHeritage = () => {
       }}
     >
         <img
-          src="/public/images/FamilyHeritage.png" 
+          src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/images/FamilyHeritage.png" 
           alt="Family Heritage"
           style={{
             height: "100%",
