@@ -1,9 +1,8 @@
 import { useMemo, useState, useRef, useEffect } from "react";
-import PropTypes from 'prop-types';
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber"
 import { Environment, Float, Gltf, useTexture } from "@react-three/drei";
-import { SRGBColorSpace, Vector3, Euler, Quaternion } from "three";
-import { Bug, Flower } from "./Models";
+import { SRGBColorSpace, Vector3, Euler, Quaternion, BackSide, RepeatWrapping } from "three";
+import { Bug, Flower, Ring } from "./Models";
 import { lerp } from "three/src/math/MathUtils";
 
 const CollectionPage = ({ show }) => {
@@ -23,7 +22,6 @@ const CollectionPage = ({ show }) => {
                 const data = await response.json();
 
                 if (data && Array.isArray(data) && data.length > 0) {
-                    console.log(data);
                     setProducts(data);
                 } else {
                     console.log("No products found.");
@@ -65,29 +63,42 @@ const CollectionPage = ({ show }) => {
         setTimeout(() => { imgRef.current.style.opacity = 0; }, 500);
     }, []);
 
-    const handlePreBooking = product => {
-        const url = `https://worldofdore.com/cart/?product_name=${encodeURIComponent(product.name)}&price=${1}&quantity=${product.price}`;
-        window.location.href = url;
-    };
+    const [fov, setFov] = useState(22);
+
+    useEffect(() => {
+        const updateFov = () => {
+            if (window.innerWidth < 768) {
+                setFov(39);
+            } else {
+                setFov(18);
+            }
+        };
+
+        updateFov();
+        window.addEventListener("resize", updateFov);
+
+        return () => {
+            window.removeEventListener("resize", updateFov);
+        };
+    }, []);
 
     return (
         <div className={`text-white w-screen h-screen absolute top-0 left-0 overflow-hidden ${show ? "visible" : "invisible"} z-50`} >
 
             <img src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Scene 2 A.jpg" crossOrigin="anonymous" width={'1080'} height={1080} className="w-screen h-screen object-cover absolute top-0 left-0 z-20" ref={imgRef} />
 
-            <img onClick={handlePrev} src='https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/img/left-arrow.png' alt='prev' className="absolute left-10 top-1/2 -translate-y-1/2 w-28 cursor-pointer z-50" />
-            <img onClick={handleNext} src='https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/img/right-arrow.png' alt='next' className="absolute right-10 top-1/2 -translate-y-1/2 w-28 cursor-pointer z-50" />
-            <div className="absolute top-10 left-1/2 -translate-x-1/2 font-sans font-bold text-3xl z-50">{products.length > 0 && products[activeItem].name}</div>
-            <div className="absolute bottom-32 left-1/2 -translate-x-1/2 font-sans font-bold text-3xl z-50">{products.length > 0 && products[activeItem].price} AED</div>
-            <div className="absolute bottom-24 left-1/2 -translate-x-1/2 font-sans font-bold text-3xl z-50">{products.length > 0 && products[activeItem].uagb_excerpt}</div>
+            <img onClick={handlePrev} src='https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/img/left-arrow.png' alt='prev' className="absolute left-2 lg:left-10 top-1/2 -translate-y-1/2 w-28 cursor-pointer z-50" />
+            <img onClick={handleNext} src='https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/img/right-arrow.png' alt='next' className="absolute right-2 lg:right-10 top-1/2 -translate-y-1/2 w-28 cursor-pointer z-50" />
+            <div className="absolute top-10 left-1/2 -translate-x-1/2 font-sans font-bold text-lg lg:text-3xl z-50">{products.length > 0 && products[activeItem].name}</div>
+            <div className="absolute bottom-32 left-1/2 -translate-x-1/2 font-sans font-bold text-lg lg:text-3xl z-50">{products.length > 0 && products[activeItem].price} AED</div>
+            <div className="absolute bottom-24 left-1/2 -translate-x-1/2 font-sans font-bold text-base lg:text-3xl z-50">{products.length > 0 && products[activeItem].uagb_excerpt}</div>
             <button
-                onClick={() => handlePreBooking(products[activeItem])}
-                className="absolute bottom-10 left-1/2 -translate-x-1/2 font-sans font-bold text-xl hover:bg-white/40 border-2 border-white rounded-full px-10 py-2 z-50"
+                className="absolute bottom-10 left-1/2 -translate-x-1/2 font-sans font-bold text-xl hover:bg-white/40 border-2 border-whtie rounded-full px-10 py-2 z-50"
             >
                 Pre Booking
             </button>
 
-            <Canvas className="w-screen h-screen z-30" camera={{ fov: 22 }}>
+            <Canvas className="w-screen h-screen z-30" camera={{ fov: fov }}>
                 <ambientLight />
                 <Environment preset="city" />
                 <CameraController active={activeItem} items={items} />
@@ -98,15 +109,10 @@ const CollectionPage = ({ show }) => {
     )
 };
 
-CollectionPage.propTypes = {
-    show: PropTypes.bool.isRequired,
-};
-
-
-const Models = ({ items, active, handlePreBooking }) => {
+const Models = ({ items, active }) => {
     const ref = useRef([]);
     useFrame(({ pointer }) => {
-        if (!ref.current) return;
+        if (!ref.current || items.length <= 0) return;
         ref.current[active].rotation.y = lerp(ref.current[active].rotation.y, items[active].rotation.y - pointer.x * 0.5, 0.05);
     });
 
@@ -114,30 +120,52 @@ const Models = ({ items, active, handlePreBooking }) => {
         <Float speed={5} rotationIntensity={0.3} floatIntensity={1} floatingRange={[0, 0.4]} >
             {
                 items.map((item, idx) => {
-                const modelIndex = idx % 3;
+                    const modelIndex = idx % 3;
                     switch (modelIndex) {
                         case 0:
-                            return <Bug ref={el => ref.current[idx] = el} {...item} />;
+                            return <Bug ref={el => ref.current[idx] = el} {...item} key={idx} />;
                         case 1:
-                            return <Flower ref={el => ref.current[idx] = el} {...item} scale={3.0} />;
+                            return <Flower ref={el => ref.current[idx] = el} {...item} scale={3.0} key={idx} />;
                         case 2:
-                            return <Gltf ref={el => ref.current[idx] = el} {...item} src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/nenya_galadriels_ring.glb" scale={0.008} />;
+                            return <Gltf ref={el => ref.current[idx] = el} {...item} src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/nenya_galadriels_ring.glb" scale={0.008} key={idx} />;
                         default:
                             return null;
                     }
                 })
             }
         </Float>
-    );
+    )
 };
 
-Models.propTypes = {
-    items: PropTypes.arrayOf(PropTypes.shape({
-        position: PropTypes.instanceOf(Vector3).isRequired,
-        rotation: PropTypes.instanceOf(Euler).isRequired,
-    })).isRequired,
-    active: PropTypes.number.isRequired,
-};
+const Background = ({ items, active }) => {
+
+    const bgRef = useRef();
+    const bgMap = useTexture("https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Final Website Look/Scene 2 A.jpg");
+    bgMap.colorSpace = SRGBColorSpace;
+    bgMap.wrapS = RepeatWrapping;
+    bgMap.wrapT = RepeatWrapping;
+    bgMap.repeat.set(10, 5);
+
+    const { viewport } = useThree();
+
+    // NOTE: Change this to alter the background movement based on mouse position.
+    // Lower values results in smoother but slower animations
+    // const t = 0.1;
+
+    useFrame(({ camera, pointer }) => {
+        // bgRef.current.rotation.y = camera.rotation.y;
+        // bgRef.current.lookAt(0, 0,0);
+        bgRef.current.rotation.y = lerp(bgRef.current.rotation.y, pointer.x * 0.02 + Math.PI / 2, 0.1); 
+        bgRef.current.rotation.x = lerp(bgRef.current.rotation.x, pointer.y * 0.1, 0.1);
+    });
+
+    return <>
+        <mesh ref={bgRef} position={[0, 0, 0]} renderOrder={-100} scale={400} rotation={[0, (Math.PI / 180) * 90, 0]}>
+            <sphereGeometry args={[1, 128, 12]} />
+            <meshBasicMaterial map={bgMap} side={BackSide}/>
+        </mesh>
+    </>;
+}
 
 const CameraController = ({ active, items }) => {
     const temp = useRef(new Vector3());
@@ -146,7 +174,7 @@ const CameraController = ({ active, items }) => {
     bgMap.colorSpace = SRGBColorSpace;
     scene.background = bgMap;
 
-    useFrame(({ camera }) => {
+    useFrame(({ camera, pointer }) => {
         if (items.length <= 0) return;
         temp.current.lerp(items[active].position, 0.1);
         camera.lookAt(temp.current);
@@ -154,14 +182,6 @@ const CameraController = ({ active, items }) => {
         camera.updateProjectionMatrix();
     });
     return null;
-};
-
-CameraController.propTypes = {
-    active: PropTypes.number.isRequired,
-    items: PropTypes.arrayOf(PropTypes.shape({
-        position: PropTypes.instanceOf(Vector3).isRequired,
-        rotation: PropTypes.instanceOf(Euler).isRequired,
-    })).isRequired,
 };
 
 export default CollectionPage;

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./HomePage.css";
-import { Canvas, useThree } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { SRGBColorSpace } from "three";
 import { EffectComposer } from "@react-three/postprocessing";
 import { Fluid } from "@whatisjery/react-fluid-distortion";
@@ -16,9 +16,9 @@ const HomePage = () => {
         const video2 = document.getElementById('videoTransition');
 
         function updateCombinedProgress() {
-            const progress1 = video1.readyState >= 4 ? 50 : 0; // 50% if video1 is ready
-            const progress2 = video2.readyState >= 4 ? 50 : 0; // 50% if video2 is ready
-            setProgress(progress1 + progress2); // Combined progress
+            const progress1 = video1.readyState >= 4 ? 50 : 0;
+            const progress2 = video2.readyState >= 4 ? 50 : 0;
+            setProgress(progress1 + progress2);
             if (progress1 + progress2 >= 100) {
                 const pp = document.getElementById('pt');
                 const pb = document.getElementById('progress-bar');
@@ -70,8 +70,11 @@ const HomePage = () => {
                 }, 1000);
             }, 1000);
         }
+        // vidRef.current.PlaybackRate = 0.5;
+        vidRef.current.play();
     }, [enter]);
     const vid = useRef();
+    const vidRef = useRef();
 
     return (
         <div className="w-screen h-screen overflow-hidden  relative">
@@ -82,8 +85,7 @@ const HomePage = () => {
                     src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Transition%20A.mp4"
                     id="videoTransition"
                     className="hidden"
-                    crossOrigin="anonymous"
-                    autoPlay
+                    preload="auto"
                     muted
                 />
                 <video
@@ -96,24 +98,24 @@ const HomePage = () => {
                     ref={vid}
                 />
 
-                    <Canvas className={ `absolute top-0 left-0 w-screen h-screen z-10 pointer-events-auto ${showCollection ? "invisible" : "visible"}` }>
-                        {progress >= 100 && <Video setShowCollection={setShowCollection}/>}
-                        <EffectComposer>
-                            <Fluid
-                                rainbow={false}
-                                fluidColor="hotpink"
-                                showBackground
-                                blend={1.0}
-                                velocityDissipation={0.9}
-                                radius={0.2}
-                                curl={1.0}
-                                pressure={0.9}
-                                intensity={1}
-                            />
-                        </EffectComposer>
-                    </Canvas>
+                <Canvas className={`absolute top-0 left-0 w-screen h-screen z-10 pointer-events-auto ${showCollection ? "invisible" : "visible"}`}>
+                    {progress >= 100 && <Video setShowCollection={setShowCollection} />}
+                    <EffectComposer>
+                        <Fluid
+                            rainbow={false}
+                            fluidColor="hotpink"
+                            showBackground
+                            blend={1.0}
+                            velocityDissipation={0.9}
+                            radius={0.2}
+                            curl={1.0}
+                            pressure={0.9}
+                            intensity={1}
+                        />
+                    </EffectComposer>
+                </Canvas>
 
-                <CollectionPage show={showCollection}/>
+                <CollectionPage show={showCollection} />
 
                 <button
                     className="absolute bottom-10 left-1/2 -translate-x-1/2 bg-white/20  font-bold p-4 rounded-full border-2 hover:bg-white/40 pointer-events-auto z-20"
@@ -122,22 +124,25 @@ const HomePage = () => {
                     Collections
                 </button>
             </div>
-            <div id="logo">
-                <img id="bug" src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/bug.png" width={100} height={100} />
-                <img id="r" src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/logo/r.png" width={100} height={100} />
-                <img id="e" src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/logo/e.png" width={100} height={100} />
-                <img id="e-bar" src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/logo/e-bar.png" width={100} height={100} />
-                <img id="o" src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/logo/o.png" width={100} height={100} />
-                <div id="d" className="w-screen h-screen absolute top-0 left-0">
-                    <img id="d-up" src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/logo/d-up.png" width={100} height={100} />
-                    <img id="d-down" src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/logo/d-down.png" width={100} height={100} />
-                </div>
+            {/* <div id="logo" className="relative w-screen h-screen"> */}
+            {/*     <img id="bug" src="bug.png" width={100} height={100} /> */}
+            {/*     <img id="r" src="logo/r.png" width={100} height={100} /> */}
+            {/*     <img id="e" src="logo/e.png" width={100} height={100} /> */}
+            {/*     <img id="e-bar" src="logo/e-bar.png" width={100} height={100} /> */}
+            {/*     <img id="o" src="logo/o.png" width={100} height={100} /> */}
+            {/*     <div id="d" className="w-full h-full absolute top-0 left-0"> */}
+            {/*         <img id="d-up" src="logo/d-up.png" width={100} height={100} /> */}
+            {/*         <img id="d-down" src="logo/d-down.png" width={100} height={100} /> */}
+            {/*     </div> */}
+            {/* </div> */}
+            <div className="w-screen h-screen absolute top-0 left-0" id="logo">
+                <video muted autoPlay src="/intro.mp4" className="w-full h-full object-cover scale-105" ref={vidRef}/>
             </div>
             <div id="progress-button" className="w-screen h-screen absolute top-0 left-0">
                 <div id="progress-bar" onClick={() => setEnter(true)}>
                     <div id="progress" style={{ width: `${progress}%` }}></div>
                 </div>
-                <div id="pt" className="absolute bottom-64 left-1/2 -translate-x-1/2 font-bold text-4xl  text-white">{progress.toFixed(0)}%</div>
+                <div id="pt" className="absolute bottom-24 left-1/2 -translate-x-1/2 font-bold text-4xl  text-white">{progress.toFixed(0)}%</div>
                 <div id="enter" className="pointer-events-none">Enter World</div>
             </div>
         </div>
@@ -179,11 +184,17 @@ const Video = ({ setShowCollection }) => {
     const { viewport } = useThree();
 
     useEffect(() => {
+
+        // const aspectRatio = 16 / 9;
+        // const planeHeight = viewport.height;
+        // const planeWidth = planeHeight / aspectRatio;
+
         if (ref.current) {
             ref.current.scale.set(viewport.width, viewport.height, 1.0);
         }
 
         if (refTransition.current) {
+
             refTransition.current.scale.set(viewport.width, viewport.height, 1.0);
         }
     }, [ref.current, refTransition.current]);
