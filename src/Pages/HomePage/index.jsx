@@ -85,7 +85,8 @@ const HomePage = () => {
                     src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Transition%20A.mp4"
                     id="videoTransition"
                     className="hidden"
-                    preload="auto"
+                    crossOrigin="anonymous"
+                    autoPlay
                     muted
                 />
                 <video
