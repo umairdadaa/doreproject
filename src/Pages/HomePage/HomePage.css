@@ -240,3 +240,10 @@ img {
     0%   { transform: translateY(0%);}
     100% { transform: translateY(100%);}
 }
+
+@media (max-width: 768px) {
+
+    #progress-bar {
+        width: 50%;
+    }
+}

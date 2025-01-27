@@ -137,7 +137,7 @@ const HomePage = () => {
             {/*     </div> */}
             {/* </div> */}
             <div className="w-screen h-screen absolute top-0 left-0" id="logo">
-                <video muted autoPlay src="/intro.mp4" className="w-full h-full object-cover scale-105" ref={vidRef}/>
+                <video controls={false} muted autoPlay src="/intro.mp4" className="w-full h-full object-cover scale-105" ref={vidRef}/>
             </div>
             <div id="progress-button" className="w-screen h-screen absolute top-0 left-0">
                 <div id="progress-bar" onClick={() => setEnter(true)}>
