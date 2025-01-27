@@ -81,23 +81,25 @@ const HomePage = () => {
             <div id="top" className="bg-[#ab3a1c] w-screen h-1/2 absolute top-0 left-0"></div>
             <div id="bottom" className="bg-[#ab3a1c] w-screen h-1/2 absolute top-1/2 left-0"></div>
             <div className="w-screen h-screen absolute top-0 left-0 -z-10 isolate" id="main">
-                <video
-                    src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Transition%20A.mp4"
-                    id="videoTransition"
-                    className="hidden"
-                    crossOrigin="anonymous"
-                    autoPlay
-                    muted
-                />
-                <video
-                    src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Scene%201%20Birds.mp4"
-                    id="home-video"
-                    className="hidden"
-                    crossOrigin="anonymous"
-                    autoPlay
-                    muted
-                    ref={vid}
-                />
+            <video
+                src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Transition%20A.mp4"
+                id="videoTransition"
+                className="hidden"
+                crossOrigin="anonymous"
+                autoPlay
+                muted
+                preload="auto"
+            />
+            <video
+                src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Scene%201%20Birds.mp4"
+                id="home-video"
+                className="hidden"
+                crossOrigin="anonymous"
+                autoPlay
+                muted
+                ref={vid}
+                preload="auto"
+            />
 
                 <Canvas className={`absolute top-0 left-0 w-screen h-screen z-10 pointer-events-auto ${showCollection ? "invisible" : "visible"}`}>
                     {progress >= 100 && <Video setShowCollection={setShowCollection} />}
@@ -137,7 +139,7 @@ const HomePage = () => {
             {/*     </div> */}
             {/* </div> */}
             <div className="w-screen h-screen absolute top-0 left-0" id="logo">
-                <video controls={false} muted autoPlay playsinline src="/intro.mp4" className="w-full h-full object-cover scale-105" ref={vidRef}/>
+                <video controls={false} muted autoPlay src="/intro.mp4" className="w-full h-full object-cover scale-105" ref={vidRef}/>
             </div>
             <div id="progress-button" className="w-screen h-screen absolute top-0 left-0">
                 <div id="progress-bar" onClick={() => setEnter(true)}>
