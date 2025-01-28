@@ -179,7 +179,7 @@ const HomePage = () => {
                     </button>
                 ) : (
                     <button
-                        className="absolute bottom-10 left-1/2 -translate-x-1/2 bg-white/20  font-bold p-4 rounded-full border-2 hover:bg-white/40 pointer-events-auto z-20"
+                        className="absolute bottom-[90px] left-1/2 -translate-x-1/2 bg-white/20  font-bold p-4 rounded-full border-2 hover:bg-white/40 pointer-events-auto z-20"
                         id="mobile-collection"
                         onClick={() => {
                             setShowTransitionGif(true)
