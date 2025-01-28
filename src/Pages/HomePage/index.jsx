@@ -104,7 +104,7 @@ const HomePage = () => {
             {window.innerWidth < 768 ? (
                 showTransitionGif && !gifShown && (
                     <img 
-                        src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/TransitionA.gif" // Replace with the actual path to your GIF
+                        src={`https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/TransitionA.gif?cacheBust=${Math.floor(Date.now() / 30000)}`} // Replace with the actual path to your GIF
                         alt="Mobile GIF"
                         className="gif-animation"
                         crossOrigin="anonymous" // Adjust styles as needed
@@ -121,7 +121,7 @@ const HomePage = () => {
                         muted
                         preload="auto"
                     >
-                        <source src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Transition%20A.mp4" type="video/mp4" />
+                        <source src={`https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Transition%20A.mp4?cacheBust=${Math.floor(Date.now() / 30000)}`} type="video/mp4" />
                     </video>
                 </>
             )}
@@ -129,7 +129,7 @@ const HomePage = () => {
             {window.innerWidth < 768 ? (
                 !showTransitionGif && (
                     <img 
-                        src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Scene1Birds-ezgif.com-video-to-gif-converter.gif"
+                        src={`https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Scene1Birds-ezgif.com-video-to-gif-converter.gif?cacheBust=${Math.floor(Date.now() / 30000)}`}
                         alt="Mobile GIF"
                         className="gif-animation"
                         crossOrigin="anonymous" // Adjust styles as needed
@@ -139,7 +139,7 @@ const HomePage = () => {
             ) : (
                 <>
                     <video
-                        src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Scene%201%20Birds.mp4"
+                        src={`https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Scene%201%20Birds.mp4?cacheBust=${Math.floor(Date.now() / 30000)}`}
                         id="home-video"
                         className="hidden"
                         crossOrigin="anonymous"
@@ -148,7 +148,7 @@ const HomePage = () => {
                         ref={vid}
                         preload="auto"
                     >
-                        <source src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Scene%201%20Birds.mp4" type="video/mp4" />
+                        <source src={`https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Scene%201%20Birds.mp4?cacheBust=${Math.floor(Date.now() / 30000)}`} type="video/mp4" />
                     </video>
                 </>
             )}
