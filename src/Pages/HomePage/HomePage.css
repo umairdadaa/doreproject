@@ -245,5 +245,14 @@ img {
 
     #progress-bar {
         width: 50%;
+        background-color: #ab3a1c;
     }
+}
+
+.gif-animation {
+    object-fit: fill;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    z-index: 11;
 }

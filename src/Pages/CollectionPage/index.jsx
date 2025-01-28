@@ -61,8 +61,11 @@ const CollectionPage = ({ show }) => {
     // HACK: When the site loads, the background img fades out after 
     // 500 milliseconds to aid in the transition
     useEffect(() => {
-        setTimeout(() => { imgRef.current.style.opacity = 0; }, 500);
-    }, []);
+        setTimeout(() => {
+            if (imgRef.current) {
+                imgRef.current.style.opacity = 0; // Ensure imgRef.current is defined
+            }
+        }, 500);    }, []);
 
     const handlePreBooking = product => {
         const url = `https://worldofdore.com/cart/?product_name=${encodeURIComponent(product.name)}&price=${1}&quantity=${product.price}`;
