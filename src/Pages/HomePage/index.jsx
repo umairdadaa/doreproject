@@ -15,6 +15,8 @@ const HomePage = () => {
     const [enter, setEnter] = useState(false);
     const [progress, setProgress] = useState(0);
     const [showCollection, setShowCollection] = useState(false);
+    const [showTransitionGif, setShowTransitionGif] = useState(false);
+    const [gifShown, setGifShown] = useState(false); // New state to track GIF display
 
     useEffect(() => {
         const video1 = document.getElementById('home-video');
@@ -39,21 +41,32 @@ const HomePage = () => {
         }
 
         // Add event listeners for `canplaythrough`
-        video1.addEventListener('canplaythrough', handleCanPlayThrough);
-        video2.addEventListener('canplaythrough', handleCanPlayThrough);
+        video1?.addEventListener('canplaythrough', handleCanPlayThrough);
+        video2?.addEventListener('canplaythrough', handleCanPlayThrough);
 
         // Trigger video loading
-        video1.load();
-        video2.load();
+        if (window.innerWidth > 768) {
+            video1?.load();
+            video2?.load();
+        }
 
         // Check if videos are already ready
-        if (video1.readyState >= 4) handleCanPlayThrough();
-        if (video2.readyState >= 4) handleCanPlayThrough();
+        if (video1?.readyState >= 4) handleCanPlayThrough();
+        if (video2?.readyState >= 4) handleCanPlayThrough();
+
+        if(window.innerWidth < 768) {
+            const pp = document.getElementById('pt');
+            const pb = document.getElementById('progress-bar');
+            const pt = document.getElementById('enter');
+            pp.style.display = 'none';
+            pb.classList.add('show-enter');
+            pt.classList.add('show-enter-keyword')
+        }
 
         // Cleanup event listeners on unmount
         return () => {
-            video1.removeEventListener('canplaythrough', handleCanPlayThrough);
-            video2.removeEventListener('canplaythrough', handleCanPlayThrough);
+            video1?.removeEventListener('canplaythrough', handleCanPlayThrough);
+            video2?.removeEventListener('canplaythrough', handleCanPlayThrough);
         };
     }, []);
 
@@ -69,7 +82,7 @@ const HomePage = () => {
             setTimeout(() => {
                 top.classList.add("slide-up");
                 bottom.classList.add("slide-down");
-                vid.current.play();
+                vid?.current?.play();
                 setTimeout(() => {
                     c.style.zIndex = 999;
                 }, 1000);
@@ -86,28 +99,57 @@ const HomePage = () => {
             <div id="top" className="bg-[#ab3a1c] w-screen h-1/2 absolute top-0 left-0"></div>
             <div id="bottom" className="bg-[#ab3a1c] w-screen h-1/2 absolute top-1/2 left-0"></div>
             <div className="w-screen h-screen absolute top-0 left-0 -z-10 isolate" id="main">
-            <video
-                id="videoTransition"
-                className="hidden"
-                crossOrigin="anonymous"
-                autoPlay
-                muted
-                preload="auto"
-            >
-                <source src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Transition%20A.mp4" type="video/mp4" />
-            </video>
-            <video
-                src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Scene%201%20Birds.mp4"
-                id="home-video"
-                className="hidden"
-                crossOrigin="anonymous"
-                autoPlay
-                muted
-                ref={vid}
-                preload="auto"
-            >
-                <source src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Scene%201%20Birds.mp4" type="video/mp4" />
-            </video>
+            {window.innerWidth < 768 ? (
+                showTransitionGif && !gifShown && (
+                    <img 
+                        src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/TransitionA.gif" // Replace with the actual path to your GIF
+                        alt="Mobile GIF"
+                        className="gif-animation"
+                        crossOrigin="anonymous" // Adjust styles as needed
+                        id="videoTransition"
+                    />
+                )
+            ) : (
+                <>
+                    <video
+                        id="videoTransition"
+                        className="hidden"
+                        crossOrigin="anonymous"
+                        autoPlay
+                        muted
+                        preload="auto"
+                    >
+                        <source src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Transition%20A.mp4" type="video/mp4" />
+                    </video>
+                </>
+            )}
+
+            {window.innerWidth < 768 ? (
+                !showTransitionGif && (
+                    <img 
+                        src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Scene1Birds-ezgif.com-video-to-gif-converter.gif"
+                        alt="Mobile GIF"
+                        className="gif-animation"
+                        crossOrigin="anonymous" // Adjust styles as needed
+                        id="home-video"
+                    />
+                )
+            ) : (
+                <>
+                    <video
+                        src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Scene%201%20Birds.mp4"
+                        id="home-video"
+                        className="hidden"
+                        crossOrigin="anonymous"
+                        autoPlay
+                        muted
+                        ref={vid}
+                        preload="auto"
+                    >
+                        <source src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Scene%201%20Birds.mp4" type="video/mp4" />
+                    </video>
+                </>
+            )}
 
                 <Canvas className={`absolute top-0 left-0 w-screen h-screen z-10 pointer-events-auto ${showCollection ? "invisible" : "visible"}`}>
                     {progress >= 100 && <Video setShowCollection={setShowCollection} />}
@@ -127,13 +169,29 @@ const HomePage = () => {
                 </Canvas>
 
                 <CollectionPage show={showCollection} />
-
-                <button
-                    className="absolute bottom-10 left-1/2 -translate-x-1/2 bg-white/20  font-bold p-4 rounded-full border-2 hover:bg-white/40 pointer-events-auto z-20"
-                    id="c"
-                >
-                    Collections
-                </button>
+                
+                {window.innerWidth > 768 ? (
+                    <button
+                        className="absolute bottom-10 left-1/2 -translate-x-1/2 bg-white/20  font-bold p-4 rounded-full border-2 hover:bg-white/40 pointer-events-auto z-20"
+                        id="c"
+                    >
+                        Collections
+                    </button>
+                ) : (
+                    <button
+                        className="absolute bottom-10 left-1/2 -translate-x-1/2 bg-white/20  font-bold p-4 rounded-full border-2 hover:bg-white/40 pointer-events-auto z-20"
+                        id="mobile-collection"
+                        onClick={() => {
+                            setShowTransitionGif(true)
+                            setTimeout(() => {
+                                setShowCollection(true); // Set showCollection after 5 seconds
+                            }, 6000);              
+                        }
+                        }
+                    >
+                        Collections
+                    </button>
+                )}
             </div>
             {/* <div id="logo" className="relative w-screen h-screen"> */}
             {/*     <img id="bug" src="bug.png" width={100} height={100} /> */}
