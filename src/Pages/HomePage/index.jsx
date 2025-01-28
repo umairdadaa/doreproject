@@ -27,10 +27,8 @@ const HomePage = () => {
             const progress2 = video2.readyState >= 4 ? 50 : 0;
             setProgress(progress1 + progress2);
             if (progress1 + progress2 >= 100) {
-                const pp = document.getElementById('pt');
                 const pb = document.getElementById('progress-bar');
                 const pt = document.getElementById('enter');
-                pp.style.display = 'none';
                 pb.classList.add('show-enter');
                 pt.classList.add('show-enter-keyword')
                 pb.classList.remove('pointer-events-none');
@@ -56,10 +54,8 @@ const HomePage = () => {
         if (video2?.readyState >= 4) handleCanPlayThrough();
 
         if(window.innerWidth < 768) {
-            const pp = document.getElementById('pt');
             const pb = document.getElementById('progress-bar');
             const pt = document.getElementById('enter');
-            pp.style.display = 'none';
             pb.classList.add('show-enter');
             pt.classList.add('show-enter-keyword')
             pb.classList.remove('pointer-events-none');
@@ -219,7 +215,6 @@ const HomePage = () => {
                 <div id="progress-bar" className="pointer-events-none" onClick={() => setEnter(true)}>
                     <div id="progress" style={{ width: `${progress}%` }}></div>
                 </div>
-                <div id="pt" className="absolute bottom-24 left-1/2 -translate-x-1/2 font-bold text-4xl  text-white">{progress.toFixed(0)}%</div>
                 <div id="enter" className="pointer-events-none">Enter World</div>
             </div>
         </div>

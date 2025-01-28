@@ -4,6 +4,25 @@
     font-weight: normal;
     font-style: normal;
 }
+
+@font-face {
+    font-family: 'Asen';
+    src: url('../../../public/Dore-Fonts/AsenPro-Bold.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Sargie';
+    src: url('../../../public/Dore-Fonts/Sargie-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.text-sargie {
+    font-family: 'Sargie' !important;
+}
+
 div {
     font-family:  'Asen' !important;
 }
@@ -149,7 +168,7 @@ img {
 
 #progress-bar {
     position: absolute;
-    top: 62%;
+    top: 65%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 20%;
@@ -210,7 +229,7 @@ img {
     font-weight: bold;
     color: white;
     position: absolute;
-    top: 62%;
+    top: 65%;
     left: 50%;
     opacity: 0;
     transform: translate(-50%, -50%);
