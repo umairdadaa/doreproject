@@ -33,6 +33,7 @@ const HomePage = () => {
                 pp.style.display = 'none';
                 pb.classList.add('show-enter');
                 pt.classList.add('show-enter-keyword')
+                pb.classList.remove('pointer-events-none');
             }
         }
 
@@ -61,6 +62,7 @@ const HomePage = () => {
             pp.style.display = 'none';
             pb.classList.add('show-enter');
             pt.classList.add('show-enter-keyword')
+            pb.classList.remove('pointer-events-none');
         }
 
         // Cleanup event listeners on unmount
@@ -214,7 +216,7 @@ const HomePage = () => {
                 />
             </div>
             <div id="progress-button" className="w-screen h-screen absolute top-0 left-0">
-                <div id="progress-bar" onClick={() => setEnter(true)}>
+                <div id="progress-bar" className="pointer-events-none" onClick={() => setEnter(true)}>
                     <div id="progress" style={{ width: `${progress}%` }}></div>
                 </div>
                 <div id="pt" className="absolute bottom-24 left-1/2 -translate-x-1/2 font-bold text-4xl  text-white">{progress.toFixed(0)}%</div>
