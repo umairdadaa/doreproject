@@ -89,7 +89,7 @@ const HomePage = () => {
             gif1?.addEventListener('load', updateCombinedProgressOfGif);
             gif2?.addEventListener('load', updateCombinedProgressOfGif);
         }
-    })
+    }, [])
 
     useEffect(() => {
         if (enter) {
@@ -203,8 +203,8 @@ const HomePage = () => {
                         className="absolute bottom-[90px] left-1/2 -translate-x-1/2 bg-white/20  font-bold p-4 rounded-full border-2 hover:bg-white/40 pointer-events-auto z-20"
                         id="mobile-collection"
                         onClick={() => {
-                            setShowBirdGif(false);
                             setShowTransitionGif(true)
+                            setShowBirdGif(false);
                             setTimeout(() => {
                                 setShowCollection(true); // Set showCollection after 5 seconds
                             }, 6000);              
