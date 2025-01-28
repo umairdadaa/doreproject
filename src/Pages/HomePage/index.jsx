@@ -16,7 +16,6 @@ const HomePage = () => {
     const [progress, setProgress] = useState(0);
     const [showCollection, setShowCollection] = useState(false);
     const [showTransitionGif, setShowTransitionGif] = useState(false);
-    const [gifShown, setGifShown] = useState(false); // New state to track GIF display
 
     useEffect(() => {
         const video1 = document.getElementById('home-video');
@@ -98,9 +97,9 @@ const HomePage = () => {
             <div id="bottom" className="bg-[#ab3a1c] w-screen h-1/2 absolute top-1/2 left-0"></div>
             <div className="w-screen h-screen absolute top-0 left-0 -z-10 isolate" id="main">
             {window.innerWidth < 768 ? (
-                showTransitionGif && !gifShown && (
+                showTransitionGif && (
                     <img 
-                        src={`https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/TransitionA.gif?cacheBust=${Math.floor(Date.now() / 30000)}`} // Replace with the actual path to your GIF
+                        src={`https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/TransitionA.gif`} // Replace with the actual path to your GIF
                         alt="Mobile GIF"
                         className="gif-animation"
                         crossOrigin="anonymous" // Adjust styles as needed
@@ -125,7 +124,7 @@ const HomePage = () => {
             {window.innerWidth < 768 ? (
                 !showTransitionGif && (
                     <img 
-                        src={`https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Scene1Birds-ezgif.com-video-to-gif-converter.gif?cacheBust=${Math.floor(Date.now() / 30000)}`}
+                        src={`https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Scene1Birds-ezgif.com-video-to-gif-converter.gif`}
                         alt="Mobile GIF"
                         className="gif-animation"
                         crossOrigin="anonymous" // Adjust styles as needed
