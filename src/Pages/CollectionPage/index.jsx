@@ -97,16 +97,16 @@ const CollectionPage = ({ show }) => {
     return (
         <div className={`text-white w-screen h-screen absolute top-0 left-0 overflow-hidden ${show ? "visible" : "invisible"} z-50`} >
             <img src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Scene 2 A.jpg" crossOrigin="anonymous" width={'1080'} height={1080} className="w-screen h-screen object-cover absolute top-0 left-0 z-20" ref={imgRef} />
-            <img onClick={handlePrev} src='https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/img/left-arrow.png' alt='prev' className="absolute left-1 top-[67%] -translate-y-1/2 w-28 cursor-pointer z-50 md:left-10 md:top-1/2" />
-            <img onClick={handleNext} src='https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/img/right-arrow.png' alt='next' className="absolute right-1 top-[67%] -translate-y-1/2 w-28 cursor-pointer z-5 md:right-10 md:top-1/2" />
+            <img onClick={handlePrev} src='https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/img/left-arrow.png' alt='prev' className="absolute left-1 top-[63%] -translate-y-1/2 w-28 cursor-pointer z-50 md:left-10 md:top-1/2" />
+            <img onClick={handleNext} src='https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/img/right-arrow.png' alt='next' className="absolute right-1 top-[63%] -translate-y-1/2 w-28 cursor-pointer z-5 md:right-10 md:top-1/2" />
             <div className="absolute top-10 left-1/2 -translate-x-1/2 font-sans font-bold text-3xl z-50">{products.length > 0 && products[activeItem].name}</div>
-            <div className="absolute bottom-28 left-1/2 -translate-x-1/2 z-50 w-full md:w-auto">
+            <div className="absolute bottom-[10rem] left-1/2 -translate-x-1/2 z-50 w-full md:bottom-28 md:w-auto">
                 <div className="font-bold text-3xl text-center mb-2">{products.length > 0 && products[activeItem].price} AED</div>
                 <div className="font-bold text-center text-1">{products.length > 0 && products[activeItem].uagb_excerpt}</div>
             </div>
             <button
                 onClick={() => handlePreBooking(products[activeItem])}
-                className="absolute bottom-10 left-1/2 -translate-x-1/2 font-sans font-bold text-xl hover:bg-white/40 border-2 border-white rounded-full px-10 py-2 z-50"
+                className="absolute bottom-[6.5rem] left-1/2 -translate-x-1/2 font-sans font-bold text-xl hover:bg-white/40 border-2 border-white rounded-full px-10 py-2 z-50 md:bottom-10"
             >
                 Pre Book
             </button>
