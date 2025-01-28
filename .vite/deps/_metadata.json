@@ -1,0 +1,109 @@
+{
+  "hash": "3167bb72",
+  "configHash": "de5658f8",
+  "lockfileHash": "06b20d90",
+  "browserHash": "8c310768",
+  "optimized": {
+    "react/jsx-dev-runtime": {
+      "src": "../../node_modules/react/jsx-dev-runtime.js",
+      "file": "react_jsx-dev-runtime.js",
+      "fileHash": "db47b898",
+      "needsInterop": true
+    },
+    "@react-three/drei": {
+      "src": "../../node_modules/@react-three/drei/index.js",
+      "file": "@react-three_drei.js",
+      "fileHash": "0e38e825",
+      "needsInterop": false
+    },
+    "@react-three/fiber": {
+      "src": "../../node_modules/@react-three/fiber/dist/react-three-fiber.esm.js",
+      "file": "@react-three_fiber.js",
+      "fileHash": "da4d2047",
+      "needsInterop": false
+    },
+    "lottie-react": {
+      "src": "../../node_modules/lottie-react/build/index.es.js",
+      "file": "lottie-react.js",
+      "fileHash": "442113b8",
+      "needsInterop": false
+    },
+    "prop-types": {
+      "src": "../../node_modules/prop-types/index.js",
+      "file": "prop-types.js",
+      "fileHash": "bdb7ae31",
+      "needsInterop": true
+    },
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "150f97c9",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "55eaa77d",
+      "needsInterop": true
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/react-router-dom/dist/index.mjs",
+      "file": "react-router-dom.js",
+      "fileHash": "0c0aa1d5",
+      "needsInterop": false
+    },
+    "react/jsx-runtime": {
+      "src": "../../node_modules/react/jsx-runtime.js",
+      "file": "react_jsx-runtime.js",
+      "fileHash": "6c5c22d1",
+      "needsInterop": true
+    },
+    "three": {
+      "src": "../../node_modules/three/build/three.module.js",
+      "file": "three.js",
+      "fileHash": "38120382",
+      "needsInterop": false
+    },
+    "three/src/math/MathUtils": {
+      "src": "../../node_modules/three/src/math/MathUtils.js",
+      "file": "three_src_math_MathUtils.js",
+      "fileHash": "499951ea",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "hls-Z7BF4YNI": {
+      "file": "hls-Z7BF4YNI.js"
+    },
+    "vision_bundle-EJYKSMNM": {
+      "file": "vision_bundle-EJYKSMNM.js"
+    },
+    "chunk-T2F7LD4Q": {
+      "file": "chunk-T2F7LD4Q.js"
+    },
+    "chunk-U6EA4UTU": {
+      "file": "chunk-U6EA4UTU.js"
+    },
+    "chunk-YSSTNHJ4": {
+      "file": "chunk-YSSTNHJ4.js"
+    },
+    "chunk-YJHHC4DW": {
+      "file": "chunk-YJHHC4DW.js"
+    },
+    "chunk-QFD2GQ4D": {
+      "file": "chunk-QFD2GQ4D.js"
+    },
+    "chunk-RW5PX2K4": {
+      "file": "chunk-RW5PX2K4.js"
+    },
+    "chunk-62HKZ5ZB": {
+      "file": "chunk-62HKZ5ZB.js"
+    },
+    "chunk-TWJRYSII": {
+      "file": "chunk-TWJRYSII.js"
+    },
+    "chunk-DC5AMYBS": {
+      "file": "chunk-DC5AMYBS.js"
+    }
+  }
+}

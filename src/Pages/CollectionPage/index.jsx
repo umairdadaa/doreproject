@@ -1,14 +1,19 @@
 import { useMemo, useState, useRef, useEffect } from "react";
 import PropTypes from 'prop-types';
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Environment, Float, Gltf, useTexture } from "@react-three/drei";
-import { SRGBColorSpace, Vector3, Euler, Quaternion } from "three";
-import { Bug, Flower } from "./Models";
+import { Canvas, useFrame, useThree, useLoader } from "@react-three/fiber";
+import { Environment, Float, useTexture } from "@react-three/drei";
+import { Vector3, Euler, Quaternion, TextureLoader, SRGBColorSpace } from "three";
+import bugImg from '../../../public/assets/Ziggy.png';  // Local import for bug image
+import flowerImg from '../../../public/assets/Zeke.png';  // Local import for flower image
+import ringImg from '../../../public/assets/Zeke.png';  // Local import for ring image
 import { lerp } from "three/src/math/MathUtils";
 
 const CollectionPage = ({ show }) => {
     const imgRef = useRef();
     const [products, setProducts] = useState([]);
+    const [paused, setPaused] = useState(false);  // To control the animation state
+    const [scaleFactor] = useState(1);  // To control the size increase of models
+
     useEffect(() => {
         const fetchProducts = async () => {
             try {
@@ -58,32 +63,33 @@ const CollectionPage = ({ show }) => {
     const handleNext = () => { setActiveItem(item => (item + 1) % items.length) };
     const handlePrev = () => { setActiveItem(item => (item - 1 + items.length) % items.length) };
 
-    // HACK: When the site loads, the background img fades out after 
-    // 500 milliseconds to aid in the transition
     useEffect(() => {
-        setTimeout(() => {
-            if (imgRef.current) {
-                imgRef.current.style.opacity = 0; // Ensure imgRef.current is defined
-            }
-        }, 500);    }, []);
+        setTimeout(() => { imgRef.current.style.opacity = 0; }, 500);
+    }, []);
 
-    const handlePreBooking = product => {
-        const url = `https://worldofdore.com/cart/?product_name=${encodeURIComponent(product.name)}&price=${1}&quantity=${product.price}`;
+    const handlePreBooking = (product) => {
+        if (!product || !product.name) {
+            console.error("Product name is required for pre-booking.");
+            return;
+        }
+    
+        const url = `https://shop.worldofdore.com/?product_name=${encodeURIComponent(product.name)}&price=${product.price}&quantity=1`;
         window.location.href = url;
+    };
+    
+
+    const toggleAnimation = () => {
+        setPaused(prev => !prev);  // Toggle the paused state
     };
 
     return (
         <div className={`text-white w-screen h-screen absolute top-0 left-0 overflow-hidden ${show ? "visible" : "invisible"} z-50`} >
-
             <img src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Scene 2 A.jpg" crossOrigin="anonymous" width={'1080'} height={1080} className="w-screen h-screen object-cover absolute top-0 left-0 z-20" ref={imgRef} />
-
             <img onClick={handlePrev} src='https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/img/left-arrow.png' alt='prev' className="absolute left-10 top-1/2 -translate-y-1/2 w-28 cursor-pointer z-50" />
             <img onClick={handleNext} src='https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/img/right-arrow.png' alt='next' className="absolute right-10 top-1/2 -translate-y-1/2 w-28 cursor-pointer z-50" />
             <div className="absolute top-10 left-1/2 -translate-x-1/2 font-sans font-bold text-3xl z-50">{products.length > 0 && products[activeItem].name}</div>
-            <div className="absolute bottom-28 left-1/2 -translate-x-1/2 z-50">
-                <div className="font-bold text-3xl text-center mb-2">{products.length > 0 && products[activeItem].price} AED</div>
-                <div className="font-bold text-center text-1">{products.length > 0 && products[activeItem].uagb_excerpt}</div>
-            </div>
+            <div className="absolute bottom-32 left-1/2 -translate-x-1/2 font-sans font-bold text-3xl z-50">{products.length > 0 && products[activeItem].price} AED</div>
+            <div className="absolute bottom-24 left-1/2 -translate-x-1/2 font-sans font-bold text-3xl z-50">{products.length > 0 && products[activeItem].uagb_excerpt}</div>
             <button
                 onClick={() => handlePreBooking(products[activeItem])}
                 className="absolute bottom-10 left-1/2 -translate-x-1/2 font-sans font-bold text-xl hover:bg-white/40 border-2 border-white rounded-full px-10 py-2 z-50"
@@ -91,12 +97,18 @@ const CollectionPage = ({ show }) => {
                 Pre Book
             </button>
 
+            <button
+                onClick={toggleAnimation}
+                className="absolute top-10 right-10 text-xl font-bold bg-blue-500 text-white p-2 rounded-full"
+            >
+                {paused ? "Start Animation" : "Stop Animation"}
+            </button>
+
             <Canvas className="w-screen h-screen z-30" camera={{ fov: 22 }}>
                 <ambientLight />
                 <Environment preset="city" />
                 <CameraController active={activeItem} items={items} />
-                <Models items={items} active={activeItem} />
-                {/* <Background items={items} active={activeItem} /> */}
+                <Models items={items} active={activeItem} paused={paused} scaleFactor={scaleFactor} />
             </Canvas>
         </div>
     )
@@ -106,26 +118,44 @@ CollectionPage.propTypes = {
     show: PropTypes.bool.isRequired,
 };
 
-
-const Models = ({ items, active, handlePreBooking }) => {
+const Models = ({ items, active, paused, scaleFactor }) => {
     const ref = useRef([]);
+
+    // Load textures using local image imports
+    const bugTexture = useLoader(TextureLoader, bugImg);
+    const flowerTexture = useLoader(TextureLoader, flowerImg);
+    const ringTexture = useLoader(TextureLoader, ringImg);
+
     useFrame(({ pointer }) => {
+        if (paused) return;  // Stop animation if paused
         if (!ref.current) return;
         ref.current[active].rotation.y = lerp(ref.current[active].rotation.y, items[active].rotation.y - pointer.x * 0.5, 0.05);
     });
 
     return (
-        <Float speed={5} rotationIntensity={0.3} floatIntensity={1} floatingRange={[0, 0.4]} >
+        <Float speed={5} rotationIntensity={0.05} floatIntensity={1} floatingRange={[0, 0.4]} >
             {
                 items.map((item, idx) => {
-                const modelIndex = idx % 3;
+                    const modelIndex = idx % 3;
                     switch (modelIndex) {
                         case 0:
-                            return <Bug ref={el => ref.current[idx] = el} {...item} />;
+                            return (
+                                <sprite ref={el => ref.current[idx] = el} {...item} scale={[60 * scaleFactor, 60 * scaleFactor, 1]} >
+                                    <spriteMaterial attach="material" map={bugTexture} />
+                                </sprite>
+                            );
                         case 1:
-                            return <Flower ref={el => ref.current[idx] = el} {...item} scale={3.0} />;
+                            return (
+                                <sprite ref={el => ref.current[idx] = el} {...item} scale={[40 * scaleFactor, 45 * scaleFactor, 1]} >
+                                    <spriteMaterial attach="material" map={flowerTexture} />
+                                </sprite>
+                            );
                         case 2:
-                            return <Gltf ref={el => ref.current[idx] = el} {...item} src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/nenya_galadriels_ring.glb" scale={0.008} />;
+                            return (
+                                <sprite ref={el => ref.current[idx] = el} {...item} scale={[60 * scaleFactor, 60 * scaleFactor, 1]} >
+                                    <spriteMaterial attach="material" map={ringTexture} />
+                                </sprite>
+                            );
                         default:
                             return null;
                     }
@@ -141,6 +171,8 @@ Models.propTypes = {
         rotation: PropTypes.instanceOf(Euler).isRequired,
     })).isRequired,
     active: PropTypes.number.isRequired,
+    paused: PropTypes.bool.isRequired,
+    scaleFactor: PropTypes.number.isRequired,
 };
 
 const CameraController = ({ active, items }) => {
