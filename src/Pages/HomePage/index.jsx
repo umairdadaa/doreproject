@@ -15,7 +15,9 @@ const HomePage = () => {
     const [enter, setEnter] = useState(false);
     const [progress, setProgress] = useState(0);
     const [showCollection, setShowCollection] = useState(false);
-    const [showTransitionGif, setShowTransitionGif] = useState(false);
+    const [showTransitionGif, setShowTransitionGif] = useState(true);
+    const [showBirdGif, setShowBirdGif] = useState(true);
+
 
     useEffect(() => {
         const video1 = document.getElementById('home-video');
@@ -52,20 +54,42 @@ const HomePage = () => {
         if (video1?.readyState >= 4) handleCanPlayThrough();
         if (video2?.readyState >= 4) handleCanPlayThrough();
 
-        if(window.innerWidth < 768) {
-            const pb = document.getElementById('progress-bar');
-            const pt = document.getElementById('enter');
-            pb.classList.add('show-enter');
-            pt.classList.add('show-enter-keyword')
-            pb.classList.remove('pointer-events-none');
-        }
-
         // Cleanup event listeners on unmount
         return () => {
             video1?.removeEventListener('canplaythrough', handleCanPlayThrough);
             video2?.removeEventListener('canplaythrough', handleCanPlayThrough);
         };
     }, []);
+
+    useEffect(() => {
+        const gif1 = document.getElementById('home-video'); // Assuming this is the first GIF
+        const gif2 = document.getElementById('videoTransition'); // Assuming this is the second GIF
+
+        function updateCombinedProgressOfGif() {
+           
+            console.log(gif1?.complete, gif2?.complete); // Log GIF readiness
+
+            const pb = document.getElementById('progress-bar');
+            const pt = document.getElementById('enter');
+
+            // Check if both GIFs are ready
+            if (gif1?.complete && gif2?.complete) {
+                setShowTransitionGif(false);
+                pb.classList.add('show-enter');
+                pt.classList.add('show-enter-keyword');
+                pb.classList.remove('pointer-events-none');
+            }
+        }
+
+        if (gif1?.complete) updateCombinedProgressOfGif();
+        if (gif2?.complete) updateCombinedProgressOfGif();
+
+
+        if(window.innerWidth < 768) {
+            gif1?.addEventListener('load', updateCombinedProgressOfGif);
+            gif2?.addEventListener('load', updateCombinedProgressOfGif);
+        }
+    })
 
     useEffect(() => {
         if (enter) {
@@ -122,7 +146,7 @@ const HomePage = () => {
             )}
 
             {window.innerWidth < 768 ? (
-                !showTransitionGif && (
+                showBirdGif && (
                     <img 
                         src={`https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Scene1Birds-ezgif.com-video-to-gif-converter.gif`}
                         alt="Mobile GIF"
@@ -179,6 +203,7 @@ const HomePage = () => {
                         className="absolute bottom-[90px] left-1/2 -translate-x-1/2 bg-white/20  font-bold p-4 rounded-full border-2 hover:bg-white/40 pointer-events-auto z-20"
                         id="mobile-collection"
                         onClick={() => {
+                            setShowBirdGif(false);
                             setShowTransitionGif(true)
                             setTimeout(() => {
                                 setShowCollection(true); // Set showCollection after 5 seconds
