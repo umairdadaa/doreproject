@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 import { Canvas, useFrame, useThree, useLoader } from "@react-three/fiber";
 import { Environment, Float, useTexture } from "@react-three/drei";
 import { Vector3, Euler, Quaternion, TextureLoader, SRGBColorSpace } from "three";
-import bugImg from '../../../public/assets/Ziggy.png';  // Local import for bug image
-import flowerImg from '../../../public/assets/Zeke.png';  // Local import for flower image
-import ringImg from '../../../public/assets/Zeke.png';  // Local import for ring image
 import { lerp } from "three/src/math/MathUtils";
 
 import Améthia from '../../../public/assets/Améthia.png';  // Local import for ring image
@@ -19,6 +16,9 @@ import Orphée from '../../../public/assets/Orphée.png';  // Local import for r
 import Rosella from '../../../public/assets/Rosella.png';  // Local import for ring image
 import Zeke from '../../../public/assets/Zeke.png';  // Local import for ring image
 import Ziggy from '../../../public/assets/Ziggy.png';  // Local import for ring image
+import nextIcon from '../../../public/assets/next-icon.png';  // Local import for ring image
+import prevIcon from '../../../public/assets/prev-icon.png';  // Local import for ring image
+
 
 const CollectionPage = ({ show }) => {
     const imgRef = useRef();
@@ -99,8 +99,8 @@ const CollectionPage = ({ show }) => {
     return (
         <div className={`text-white w-screen h-screen absolute top-0 left-0 overflow-hidden ${show ? "visible" : "invisible"} z-50`} >
             <img src={`https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Scene 2 A.jpg?cacheBust=${Math.floor(Date.now() / 10000)}`} crossOrigin="anonymous" width={'1080'} height={1080} className="w-screen h-screen object-cover absolute top-0 left-0 z-20" ref={imgRef} />
-            <img onClick={handlePrev} src={`https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/img/left-arrow.png?cacheBust=${Math.floor(Date.now() / 10000)}`} alt='prev' className="absolute left-1 top-[50%] -translate-y-1/2 w-28 cursor-pointer z-50 md:left-10 md:top-1/2" />
-            <img onClick={handleNext} src={`https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/img/right-arrow.png?cacheBust=${Math.floor(Date.now() / 10000)}`} alt='next' className="absolute right-1 top-[50%] -translate-y-1/2 w-28 cursor-pointer z-5 md:right-10 md:top-1/2" />
+            <img onClick={handlePrev} src={prevIcon} alt='prev' className="absolute left-1 top-[50%] -translate-y-1/2 cursor-pointer z-50 md:left-10 md:top-1/2" />
+            <img onClick={handleNext} src={nextIcon} alt='next' className="absolute right-1 top-[50%] -translate-y-1/2 cursor-pointer z-5 md:right-10 md:top-1/2" />
             <div className="absolute top-10 left-1/2 -translate-x-1/2 font-sans font-bold text-3xl z-50 text-sargie">{products.length > 0 && products[activeItem].name}</div>
             <div className="absolute bottom-[10rem] left-1/2 -translate-x-1/2 z-50 w-full md:bottom-28 md:w-auto">
                 <div className="font-bold text-3xl text-center mb-2 text-sargie">{products.length > 0 && products[activeItem].price} AED</div>
@@ -182,7 +182,7 @@ const Models = ({ items, active, paused, scaleFactor, productName }) => {
                             );
                         case 'Zeke':
                             return (
-                                <sprite ref={el => ref.current[idx] = el} {...item} position={[item.position.x, window.innerWidth < 768 ? item.position.y+5 : item.position.y, item.position.z]} scale={[window.innerWidth < 768 ? 40 * scaleFactor : 60 * scaleFactor, window.innerWidth < 768 ? 40 * scaleFactor : 60 * scaleFactor, 1]} >
+                                <sprite ref={el => ref.current[idx] = el} {...item} position={[item.position.x, window.innerWidth < 768 ? item.position.y+5 : item.position.y, item.position.z]} scale={[window.innerWidth < 768 ? 10 * scaleFactor : 10 * scaleFactor, window.innerWidth < 768 ? 10 * scaleFactor : 15 * scaleFactor, 1]} >
                                     <spriteMaterial attach="material" map={ZekeTexture} />
                                 </sprite>
                             );
@@ -200,7 +200,7 @@ const Models = ({ items, active, paused, scaleFactor, productName }) => {
                             );
                         case 'Buzzy':
                             return (
-                                <sprite ref={el => ref.current[idx] = el} {...item} position={[item.position.x, window.innerWidth < 768 ? item.position.y+5 : item.position.y, item.position.z]} position={[item.position.x, window.innerWidth < 768 ? item.position.y+5 : item.position.y, item.position.z]} scale={[window.innerWidth < 768 ?  40 * scaleFactor : 60 * scaleFactor, window.innerWidth < 768 ? 40 * scaleFactor : 60 * scaleFactor, 1]} >
+                                <sprite ref={el => ref.current[idx] = el} {...item} position={[item.position.x, window.innerWidth < 768 ? item.position.y+5 : item.position.y, item.position.z]} scale={[window.innerWidth < 768 ?  40 * scaleFactor : 60 * scaleFactor, window.innerWidth < 768 ? 40 * scaleFactor : 60 * scaleFactor, 1]} >
                                     <spriteMaterial attach="material" map={BuzzyTexture} />
                                 </sprite>
                             );
