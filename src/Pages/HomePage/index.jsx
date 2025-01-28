@@ -10,8 +10,6 @@ import { SRGBColorSpace } from "three";
 import CollectionPage from "../CollectionPage";
 import Lottie from "lottie-react";
 import animationData from '../../../public/main file.json';
-import TransitionGif from '../../../public/assets/TransitionA.gif';
-import SceneBirds from '../../../public/assets/SceneBirds.gif';
 
 const HomePage = () => {
     const [enter, setEnter] = useState(false);
@@ -104,7 +102,7 @@ const HomePage = () => {
             {window.innerWidth < 768 ? (
                 showTransitionGif && !gifShown && (
                     <img 
-                        src={TransitionGif} // Replace with the actual path to your GIF
+                        src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/TransitionA.gif" // Replace with the actual path to your GIF
                         alt="Mobile GIF"
                         className="gif-animation"
                         crossOrigin="anonymous" // Adjust styles as needed
@@ -129,7 +127,7 @@ const HomePage = () => {
             {window.innerWidth < 768 ? (
                 !showTransitionGif && (
                     <img 
-                        src={SceneBirds}
+                        src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Scene1Birds-ezgif.com-video-to-gif-converter.gif"
                         alt="Mobile GIF"
                         className="gif-animation"
                         crossOrigin="anonymous" // Adjust styles as needed
