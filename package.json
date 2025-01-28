@@ -25,6 +25,7 @@
     "jotai": "^2.11.0",
     "leva": "^0.9.35",
     "locomotive-scroll": "^4.1.4",
+    "lottie-react": "^2.4.1",
     "lucide-react": "^0.468.0",
     "motion": "^11.11.17",
     "my-react-app": "file:",

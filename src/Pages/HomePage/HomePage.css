@@ -1,11 +1,11 @@
 @font-face {
     font-family: 'Asen';
-    src: url('/fonts/Dore-Fonts/AsenPro-Bold.otf');
+    src: url('../../../public/Dore-Fonts/AsenPro-Bold.otf');
     font-weight: normal;
     font-style: normal;
 }
 div {
-    font-family:  'Asen';
+    font-family:  'Asen' !important;
 }
 #enter {
     font-family:  'Asen';
@@ -149,7 +149,7 @@ img {
 
 #progress-bar {
     position: absolute;
-    top: 60%;
+    top: 62%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 20%;
@@ -210,7 +210,7 @@ img {
     font-weight: bold;
     color: white;
     position: absolute;
-    top: 60%;
+    top: 62%;
     left: 50%;
     opacity: 0;
     transform: translate(-50%, -50%);

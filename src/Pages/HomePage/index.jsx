@@ -1,10 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import "./HomePage.css";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { Canvas,
+        //  useFrame,
+         useThree } 
+from "@react-three/fiber";
 import { SRGBColorSpace } from "three";
-import { EffectComposer } from "@react-three/postprocessing";
-import { Fluid } from "@whatisjery/react-fluid-distortion";
+// import { EffectComposer } from "@react-three/postprocessing";
+// import { Fluid } from "@whatisjery/react-fluid-distortion";
 import CollectionPage from "../CollectionPage";
+import Lottie from "lottie-react";
+import animationData from '../../../public/main file.json';
 
 const HomePage = () => {
     const [enter, setEnter] = useState(false);
@@ -71,7 +76,7 @@ const HomePage = () => {
             }, 1000);
         }
         // vidRef.current.PlaybackRate = 0.5;
-        vidRef.current.play();
+        // vidRef.current.play();
     }, [enter]);
     const vid = useRef();
     const vidRef = useRef();
@@ -82,14 +87,15 @@ const HomePage = () => {
             <div id="bottom" className="bg-[#ab3a1c] w-screen h-1/2 absolute top-1/2 left-0"></div>
             <div className="w-screen h-screen absolute top-0 left-0 -z-10 isolate" id="main">
             <video
-                src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Transition%20A.mp4"
                 id="videoTransition"
                 className="hidden"
                 crossOrigin="anonymous"
                 autoPlay
                 muted
                 preload="auto"
-            />
+            >
+                <source src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Transition%20A.mp4" type="video/mp4" />
+            </video>
             <video
                 src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Scene%201%20Birds.mp4"
                 id="home-video"
@@ -99,11 +105,13 @@ const HomePage = () => {
                 muted
                 ref={vid}
                 preload="auto"
-            />
+            >
+                <source src="https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Scene%201%20Birds.mp4" type="video/mp4" />
+            </video>
 
                 <Canvas className={`absolute top-0 left-0 w-screen h-screen z-10 pointer-events-auto ${showCollection ? "invisible" : "visible"}`}>
                     {progress >= 100 && <Video setShowCollection={setShowCollection} />}
-                    <EffectComposer>
+                    {/* <EffectComposer>
                         <Fluid
                             rainbow={false}
                             fluidColor="hotpink"
@@ -115,7 +123,7 @@ const HomePage = () => {
                             pressure={0.9}
                             intensity={1}
                         />
-                    </EffectComposer>
+                    </EffectComposer> */}
                 </Canvas>
 
                 <CollectionPage show={showCollection} />
@@ -139,7 +147,13 @@ const HomePage = () => {
             {/*     </div> */}
             {/* </div> */}
             <div className="w-screen h-screen absolute top-0 left-0" id="logo">
-                <video controls={false} muted autoPlay src="/intro.mp4" className="w-full h-full object-cover scale-105" ref={vidRef}/>
+                {/* <video controls={false} muted autoPlay src="/intro.mp4" className="w-full h-full object-cover scale-105" ref={vidRef}/> */}
+                <Lottie 
+                    animationData={animationData} 
+                    loop={false}
+                    style={{ width: '100%', height: '100%' }} // Customize size
+                    speed={2}
+                />
             </div>
             <div id="progress-button" className="w-screen h-screen absolute top-0 left-0">
                 <div id="progress-bar" onClick={() => setEnter(true)}>

@@ -13,7 +13,7 @@ const CollectionPage = ({ show }) => {
         const fetchProducts = async () => {
             try {
                 const response = await fetch(
-                    "https://worldofdore.com/wp-json/wc/v3/products?consumer_key=ck_c7136f692738319f1a9f79fa3de2973a6b5869c6&consumer_secret=cs_f5d27b93133ac424e9458f54a65e3a216d2ea885"
+                    "https://shop.worldofdore.com/wp-json/wc/v3/products?consumer_key=ck_c7136f692738319f1a9f79fa3de2973a6b5869c6&consumer_secret=cs_f5d27b93133ac424e9458f54a65e3a216d2ea885&per_page=50"
                 );
 
                 if (!response.ok) {
@@ -77,8 +77,10 @@ const CollectionPage = ({ show }) => {
             <img onClick={handlePrev} src='https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/img/left-arrow.png' alt='prev' className="absolute left-10 top-1/2 -translate-y-1/2 w-28 cursor-pointer z-50" />
             <img onClick={handleNext} src='https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/img/right-arrow.png' alt='next' className="absolute right-10 top-1/2 -translate-y-1/2 w-28 cursor-pointer z-50" />
             <div className="absolute top-10 left-1/2 -translate-x-1/2 font-sans font-bold text-3xl z-50">{products.length > 0 && products[activeItem].name}</div>
-            <div className="absolute bottom-32 left-1/2 -translate-x-1/2 font-sans font-bold text-3xl z-50">{products.length > 0 && products[activeItem].price} AED</div>
-            <div className="absolute bottom-24 left-1/2 -translate-x-1/2 font-sans font-bold text-3xl z-50">{products.length > 0 && products[activeItem].uagb_excerpt}</div>
+            <div className="absolute bottom-28 left-1/2 -translate-x-1/2 z-50">
+                <div className="font-bold text-3xl text-center mb-2">{products.length > 0 && products[activeItem].price} AED</div>
+                <div className="font-bold text-center text-1">{products.length > 0 && products[activeItem].uagb_excerpt}</div>
+            </div>
             <button
                 onClick={() => handlePreBooking(products[activeItem])}
                 className="absolute bottom-10 left-1/2 -translate-x-1/2 font-sans font-bold text-xl hover:bg-white/40 border-2 border-white rounded-full px-10 py-2 z-50"
