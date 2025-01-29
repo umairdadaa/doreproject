@@ -210,6 +210,7 @@ const HomePage = () => {
                             const gif1 = document.getElementById('home-video'); // Assuming this is the first GIF
                             const gif2 = document.getElementById('videoTransition'); // Assuming this is the second GIF
                             gif1.style.display = 'none';
+                            gif2.src = gif2.src;
                             setTimeout(() => {
                                 setShowCollection(true);
                                 gif2.style.display = 'none';
