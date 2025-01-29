@@ -64,7 +64,10 @@ const HomePage = () => {
     useEffect(() => {
         const gif1 = document.getElementById('home-video'); // Assuming this is the first GIF
         const gif2 = document.getElementById('videoTransition'); // Assuming this is the second GIF
+        console.log('showTransitionGif showTransitionGif', showTransitionGif);
+        console.log('showBirdGif showBirdGif', showBirdGif);
 
+        
         function updateCombinedProgressOfGif() {
            
             console.log(gif1?.complete, gif2?.complete); // Log GIF readiness
@@ -121,12 +124,12 @@ const HomePage = () => {
             <div id="bottom" className="bg-[#ab3a1c] w-screen h-1/2 absolute top-1/2 left-0"></div>
             <div className="w-screen h-screen absolute top-0 left-0 -z-10 isolate" id="main">
             {window.innerWidth < 768 ? (
-                showTransitionGif && (
+                true && (
                     <img 
                         key={transitionKey}
                         src={`https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/TransitionA.gif`} // Replace with the actual path to your GIF
                         alt="Mobile GIF"
-                        className="gif-animation"
+                        className="gif-animation d-none"
                         crossOrigin="anonymous" // Adjust styles as needed
                         id="videoTransition"
                     />
@@ -147,7 +150,7 @@ const HomePage = () => {
             )}
 
             {window.innerWidth < 768 ? (
-                showBirdGif && (
+                true && (
                     <img 
                         src={`https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/Scene1Birds-ezgif.com-video-to-gif-converter.gif`}
                         alt="Mobile GIF"
@@ -204,14 +207,15 @@ const HomePage = () => {
                         className="absolute bottom-[90px] left-1/2 -translate-x-1/2 bg-white/20  font-bold p-4 rounded-full border-2 hover:bg-white/40 pointer-events-auto z-20"
                         id="mobile-collection"
                         onClick={() => {
-                            setShowTransitionGif(true)
-                            setShowBirdGif(false);
-                            setTransitionKey(prev => prev + 1);
+                            const gif1 = document.getElementById('home-video'); // Assuming this is the first GIF
+                            const gif2 = document.getElementById('videoTransition'); // Assuming this is the second GIF
+                            gif1.style.display = 'none';
+                            gif2.src=gif2.src;
                             setTimeout(() => {
-                                setShowCollection(true); // Set showCollection after 5 seconds
-                            }, 6000);              
-                        }
-                        }
+                                setShowCollection(true);
+                                gif2.style.display = 'none';
+                            }, 6000);
+                        }}
                     >
                         Collections
                     </button>
