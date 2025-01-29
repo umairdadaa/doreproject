@@ -64,7 +64,7 @@ const HomePage = () => {
     useEffect(() => {
         const gif1 = document.getElementById('home-video'); // Assuming this is the first GIF
         const gif2 = document.getElementById('videoTransition'); // Assuming this is the second GIF
-
+        console.log('showTransitionGif showTransitionGif', showTransitionGif);
         function updateCombinedProgressOfGif() {
            
             console.log(gif1?.complete, gif2?.complete); // Log GIF readiness
@@ -204,14 +204,15 @@ const HomePage = () => {
                         className="absolute bottom-[90px] left-1/2 -translate-x-1/2 bg-white/20  font-bold p-4 rounded-full border-2 hover:bg-white/40 pointer-events-auto z-20"
                         id="mobile-collection"
                         onClick={() => {
-                            setShowTransitionGif(true)
-                            setShowBirdGif(false);
-                            setTransitionKey(prev => prev + 1);
                             setTimeout(() => {
-                                setShowCollection(true); // Set showCollection after 5 seconds
-                            }, 6000);              
-                        }
-                        }
+                                setShowBirdGif(false);
+                                setShowTransitionGif(true);
+                                setTransitionKey(prev => prev + 1);
+                                setTimeout(() => {
+                                    setShowCollection(true); // Set showCollection after 6 seconds
+                                }, 6000);
+                            }, 0);
+                        }}
                     >
                         Collections
                     </button>
