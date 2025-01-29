@@ -207,14 +207,13 @@ const HomePage = () => {
                         className="absolute bottom-[90px] left-1/2 -translate-x-1/2 bg-white/20  font-bold p-4 rounded-full border-2 hover:bg-white/40 pointer-events-auto z-20"
                         id="mobile-collection"
                         onClick={() => {
-                            setTimeout(() => {
                                 setShowBirdGif(false);
                                 setShowTransitionGif(true);
                                 setTransitionKey(prev => prev + 1);
                                 setTimeout(() => {
-                                    setShowCollection(true); // Set showCollection after 6 seconds
+                                    setShowTransitionGif(false);
+                                    
                                 }, 6000);
-                            }, 0);
                         }}
                     >
                         Collections
