@@ -164,61 +164,61 @@ const Models = ({ items, active, paused, scaleFactor, productName }) => {
                     switch (productName) {
                         case 'Flitzy':
                             return (
-                                <sprite ref={el => ref.current[idx] = el} {...item} position={[item.position.x, window.innerWidth < 768 ? item.position.y+5 : item.position.y, item.position.z]} scale={[window.innerWidth < 768 ? 10 * scaleFactor : 10 * scaleFactor, window.innerWidth < 768 ? 10 * scaleFactor : 15 * scaleFactor, 1]} >
+                                <sprite ref={el => ref.current[idx] = el} {...item} position={[item.position.x, window.innerWidth < 768 ? item.position.y+5 : item.position.y, item.position.z]} scale={[window.innerWidth < 768 ? 10 * scaleFactor : 15 * scaleFactor, window.innerWidth < 768 ? 10 * scaleFactor : 15 * scaleFactor, 1]} >
                                     <spriteMaterial attach="material" map={FlitzyTexture} />
                                 </sprite>
                             );
                         case 'Rosella':
                             return (
-                                <sprite ref={el => ref.current[idx] = el} {...item} position={[item.position.x, window.innerWidth < 768 ? item.position.y+5 : item.position.y, item.position.z]} scale={[window.innerWidth < 768 ? 15 * scaleFactor : 25 * scaleFactor, window.innerWidth < 768 ? 20 * scaleFactor : 30 * scaleFactor, 1]} >
+                                <sprite ref={el => ref.current[idx] = el} {...item} position={[item.position.x, window.innerWidth < 768 ? item.position.y+5 : item.position.y, item.position.z]} scale={[window.innerWidth < 768 ? 20 * scaleFactor : 45 * scaleFactor, window.innerWidth < 768 ? 15 * scaleFactor : 30 * scaleFactor, 1]} >
                                     <spriteMaterial attach="material" map={RosellaTexture} />
                                 </sprite>
                             );
                         case 'Orphée':
                             return (
-                                <sprite ref={el => ref.current[idx] = el} {...item} position={[item.position.x, window.innerWidth < 768 ? item.position.y+5 : item.position.y, item.position.z]} scale={[window.innerWidth < 768 ? 20 * scaleFactor : 30 * scaleFactor, window.innerWidth < 768 ?  35 * scaleFactor : 45 * scaleFactor, 1]} >
+                                <sprite ref={el => ref.current[idx] = el} {...item} position={[item.position.x, window.innerWidth < 768 ? item.position.y+5 : item.position.y, item.position.z]} scale={[window.innerWidth < 768 ? 25 * scaleFactor : 45 * scaleFactor, window.innerWidth < 768 ?  35 * scaleFactor : 45 * scaleFactor, 1]} >
                                     <spriteMaterial attach="material" map={OrphéeTexture} />
                                 </sprite>
                             );
                         case 'Zeke':
                             return (
-                                <sprite ref={el => ref.current[idx] = el} {...item} position={[item.position.x, window.innerWidth < 768 ? item.position.y+5 : item.position.y, item.position.z]} scale={[window.innerWidth < 768 ? 10 * scaleFactor : 10 * scaleFactor, window.innerWidth < 768 ? 10 * scaleFactor : 15 * scaleFactor, 1]} >
+                                <sprite ref={el => ref.current[idx] = el} {...item} position={[item.position.x, window.innerWidth < 768 ? item.position.y+5 : item.position.y, item.position.z]} scale={[window.innerWidth < 768 ? 10 * scaleFactor : 15 * scaleFactor, window.innerWidth < 768 ? 10 * scaleFactor : 15 * scaleFactor, 1]} >
                                     <spriteMaterial attach="material" map={ZekeTexture} />
                                 </sprite>
                             );
                         case 'Calla Lilly':
                             return (
-                                <sprite ref={el => ref.current[idx] = el} {...item} position={[item.position.x, window.innerWidth < 768 ? item.position.y+5 : item.position.y, item.position.z]} scale={[window.innerWidth < 768 ? 15 * scaleFactor : 20 * scaleFactor, window.innerWidth < 768 ? 25 * scaleFactor : 25 * scaleFactor, 1]} >
+                                <sprite ref={el => ref.current[idx] = el} {...item} position={[item.position.x, window.innerWidth < 768 ? item.position.y+5 : item.position.y, item.position.z]} scale={[window.innerWidth < 768 ? 35 * scaleFactor :35 * scaleFactor, window.innerWidth < 768 ? 25 * scaleFactor : 25 * scaleFactor, 1]} >
                                     <spriteMaterial attach="material" map={CallaLillyTexture} />
                                 </sprite>
                             );
                         case 'Bella':
                             return (
-                                <sprite ref={el => ref.current[idx] = el} {...item} position={[item.position.x, window.innerWidth < 768 ? item.position.y+5 : item.position.y, item.position.z]} scale={[window.innerWidth < 768 ? 40 * scaleFactor : 60 * scaleFactor, window.innerWidth < 768 ? 40 * scaleFactor : 60 * scaleFactor, 1]} >
+                                <sprite ref={el => ref.current[idx] = el} {...item} position={[item.position.x, window.innerWidth < 768 ? item.position.y+5 : item.position.y, item.position.z]} scale={[window.innerWidth < 768 ? 45 * scaleFactor : 80 * scaleFactor, window.innerWidth < 768 ? 40 * scaleFactor : 60 * scaleFactor, 1]} >
                                     <spriteMaterial attach="material" map={BellaTexture} />
                                 </sprite>
                             );
                         case 'Buzzy':
                             return (
-                                <sprite ref={el => ref.current[idx] = el} {...item} position={[item.position.x, window.innerWidth < 768 ? item.position.y+5 : item.position.y, item.position.z]} scale={[window.innerWidth < 768 ?  40 * scaleFactor : 60 * scaleFactor, window.innerWidth < 768 ? 40 * scaleFactor : 60 * scaleFactor, 1]} >
+                                <sprite ref={el => ref.current[idx] = el} {...item} position={[item.position.x, window.innerWidth < 768 ? item.position.y+5 : item.position.y, item.position.z]} scale={[window.innerWidth < 768 ?  35 * scaleFactor : 55 * scaleFactor, window.innerWidth < 768 ? 40 * scaleFactor : 60 * scaleFactor, 1]} >
                                     <spriteMaterial attach="material" map={BuzzyTexture} />
                                 </sprite>
                             );
                         case 'Orabella':
                             return (
-                                <sprite ref={el => ref.current[idx] = el} {...item} position={[item.position.x, window.innerWidth < 768 ? item.position.y+5 : item.position.y, item.position.z]} scale={[window.innerWidth < 768 ?  20 * scaleFactor : 25 * scaleFactor, window.innerWidth < 768 ? 25 * scaleFactor : 35 * scaleFactor, 1]} >
+                                <sprite ref={el => ref.current[idx] = el} {...item} position={[item.position.x, window.innerWidth < 768 ? item.position.y+5 : item.position.y, item.position.z]} scale={[window.innerWidth < 768 ?  20 * scaleFactor : 35 * scaleFactor, window.innerWidth < 768 ? 15 * scaleFactor : 25 * scaleFactor, 1]} >
                                     <spriteMaterial attach="material" map={OrabellaTexture} />
                                 </sprite>
                             );
                         case 'Aurélia':
                             return (
-                                <sprite ref={el => ref.current[idx] = el} {...item} position={[item.position.x, window.innerWidth < 768 ? item.position.y+5 : item.position.y, item.position.z]} scale={[window.innerWidth < 768 ? 20 * scaleFactor : 30 * scaleFactor, window.innerWidth < 768 ? 30 * scaleFactor : 45 * scaleFactor, 1]} >
+                                <sprite ref={el => ref.current[idx] = el} {...item} position={[item.position.x, window.innerWidth < 768 ? item.position.y+5 : item.position.y, item.position.z]} scale={[window.innerWidth < 768 ? 25 * scaleFactor : 45 * scaleFactor, window.innerWidth < 768 ? 30 * scaleFactor : 45 * scaleFactor, 1]} >
                                     <spriteMaterial attach="material" map={AuréliaTexture} />
                                 </sprite>
                             );
                         case 'Améthia':
                             return (
-                                <sprite ref={el => ref.current[idx] = el} {...item} position={[item.position.x, window.innerWidth < 768 ? item.position.y+5 : item.position.y, item.position.z]} scale={[window.innerWidth < 768 ? 15 * scaleFactor : 20 * scaleFactor, window.innerWidth < 768 ? 25 * scaleFactor : 25 * scaleFactor, 1]} >
+                                <sprite ref={el => ref.current[idx] = el} {...item} position={[item.position.x, window.innerWidth < 768 ? item.position.y+5 : item.position.y, item.position.z]} scale={[window.innerWidth < 768 ? 30 * scaleFactor : 35 * scaleFactor, window.innerWidth < 768 ? 25 * scaleFactor : 25 * scaleFactor, 1]} >
                                     <spriteMaterial attach="material" map={AméthiaTexture} />
                                 </sprite>
                             );
