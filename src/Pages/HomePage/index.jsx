@@ -17,7 +17,7 @@ const HomePage = () => {
     const [showCollection, setShowCollection] = useState(false);
     const [showTransitionGif, setShowTransitionGif] = useState(true);
     const [showBirdGif, setShowBirdGif] = useState(true);
-
+    const [transitionKey, setTransitionKey] = useState(0);
 
     useEffect(() => {
         const video1 = document.getElementById('home-video');
@@ -89,7 +89,7 @@ const HomePage = () => {
             gif1?.addEventListener('load', updateCombinedProgressOfGif);
             gif2?.addEventListener('load', updateCombinedProgressOfGif);
         }
-    }, [])
+    })
 
     useEffect(() => {
         if (enter) {
@@ -123,6 +123,7 @@ const HomePage = () => {
             {window.innerWidth < 768 ? (
                 showTransitionGif && (
                     <img 
+                        key={transitionKey}
                         src={`https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/TransitionA.gif`} // Replace with the actual path to your GIF
                         alt="Mobile GIF"
                         className="gif-animation"
@@ -205,6 +206,7 @@ const HomePage = () => {
                         onClick={() => {
                             setShowTransitionGif(true)
                             setShowBirdGif(false);
+                            setTransitionKey(prev => prev + 1);
                             setTimeout(() => {
                                 setShowCollection(true); // Set showCollection after 5 seconds
                             }, 6000);              
