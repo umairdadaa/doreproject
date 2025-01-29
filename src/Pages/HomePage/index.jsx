@@ -210,7 +210,10 @@ const HomePage = () => {
                             const gif1 = document.getElementById('home-video'); // Assuming this is the first GIF
                             const gif2 = document.getElementById('videoTransition'); // Assuming this is the second GIF
                             gif1.style.display = 'none';
-                            gif2.src = gif2.src;
+                            gif2.src = '';
+                            setTimeout(() => {
+                                gif2.src = `https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/TransitionA.gif`; // Reassign source to restart
+                              }, 50);
                             setTimeout(() => {
                                 setShowCollection(true);
                                 gif2.style.display = 'none';
