@@ -65,6 +65,9 @@ const HomePage = () => {
         const gif1 = document.getElementById('home-video'); // Assuming this is the first GIF
         const gif2 = document.getElementById('videoTransition'); // Assuming this is the second GIF
         console.log('showTransitionGif showTransitionGif', showTransitionGif);
+        console.log('showBirdGif showBirdGif', showBirdGif);
+
+        
         function updateCombinedProgressOfGif() {
            
             console.log(gif1?.complete, gif2?.complete); // Log GIF readiness
