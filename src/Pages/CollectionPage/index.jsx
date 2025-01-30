@@ -30,7 +30,7 @@ const CollectionPage = ({ show }) => {
         const fetchProducts = async () => {
             try {
                 const response = await fetch(
-                    "https://shop.worldofdore.com/wp-json/wc/v3/products?consumer_key=ck_c7136f692738319f1a9f79fa3de2973a6b5869c6&consumer_secret=cs_f5d27b93133ac424e9458f54a65e3a216d2ea885&per_page=50"
+                    "https://shop.worldofdore.com/wp-json/wc/v3/products?consumer_key=ck_c7136f692738319f1a9f79fa3de2973a6b5869c6&consumer_secret=cs_f5d27b93133ac424e9458f54a65e3a216d2ea885&per_page=50&status=publish"
                 );
 
                 if (!response.ok) {

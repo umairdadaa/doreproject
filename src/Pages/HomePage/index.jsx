@@ -9,15 +9,34 @@ import { SRGBColorSpace } from "three";
 // import { Fluid } from "@whatisjery/react-fluid-distortion";
 import CollectionPage from "../CollectionPage";
 import Lottie from "lottie-react";
-import animationData from '../../../public/main file.json';
+import preLoader from '../../../public/main file.json';
+
+const animationUrl = "https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/TransitionAnimation.json";
 
 const HomePage = () => {
     const [enter, setEnter] = useState(false);
     const [progress, setProgress] = useState(0);
     const [showCollection, setShowCollection] = useState(false);
-    const [showTransitionGif, setShowTransitionGif] = useState(true);
-    const [showBirdGif, setShowBirdGif] = useState(true);
-    const [transitionKey, setTransitionKey] = useState(0);
+    const [animationData, setAnimationData] = useState(null);
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    const lottieRef = useRef(null);
+
+    useEffect(() => {
+        const fetchAnimation = async () => {
+          try {
+            const response = await fetch(animationUrl);
+            if (!response.ok) throw new Error("Failed to fetch animation data");
+            const json = await response.json();
+            setAnimationData(json);
+            setIsLoaded(true); // Mark animation as loaded
+          } catch (error) {
+            console.error("Error loading animation:", error);
+          }
+        };
+    
+        fetchAnimation();
+      }, []);
 
     useEffect(() => {
         const video1 = document.getElementById('home-video');
@@ -64,20 +83,13 @@ const HomePage = () => {
     useEffect(() => {
         const gif1 = document.getElementById('home-video'); // Assuming this is the first GIF
         const gif2 = document.getElementById('videoTransition'); // Assuming this is the second GIF
-        console.log('showTransitionGif showTransitionGif', showTransitionGif);
-        console.log('showBirdGif showBirdGif', showBirdGif);
 
-        
         function updateCombinedProgressOfGif() {
-           
-            console.log(gif1?.complete, gif2?.complete); // Log GIF readiness
-
             const pb = document.getElementById('progress-bar');
             const pt = document.getElementById('enter');
 
             // Check if both GIFs are ready
-            if (gif1?.complete && gif2?.complete) {
-                setShowTransitionGif(false);
+            if (gif1?.complete && isLoaded) {
                 pb.classList.add('show-enter');
                 pt.classList.add('show-enter-keyword');
                 pb.classList.remove('pointer-events-none');
@@ -125,13 +137,11 @@ const HomePage = () => {
             <div className="w-screen h-screen absolute top-0 left-0 -z-10 isolate" id="main">
             {window.innerWidth < 768 ? (
                 true && (
-                    <img 
-                        key={transitionKey}
-                        src={`https://pub-c2bb244c4b2641f99eb92df5396cefa1.r2.dev/TransitionA.gif`} // Replace with the actual path to your GIF
-                        alt="Mobile GIF"
-                        className="gif-animation d-none"
-                        crossOrigin="anonymous" // Adjust styles as needed
-                        id="videoTransition"
+                    <Lottie
+                        lottieRef={lottieRef}
+                        animationData={animationData}
+                        loop={false}
+                        speed={2}
                     />
                 )
             ) : (
@@ -209,12 +219,12 @@ const HomePage = () => {
                         onClick={() => {
                             const gif1 = document.getElementById('home-video'); // Assuming this is the first GIF
                             const gif2 = document.getElementById('videoTransition'); // Assuming this is the second GIF
-                            gif1.style.display = 'none';
-                            gif2.src=gif2.src;
+                            gif1.style.display = 'none';            
+                            lottieRef.current.goToAndPlay(0, true);
                             setTimeout(() => {
                                 setShowCollection(true);
                                 gif2.style.display = 'none';
-                            }, 6000);
+                            }, 7000);
                         }}
                     >
                         Collections
@@ -235,7 +245,7 @@ const HomePage = () => {
             <div className="w-screen h-screen absolute top-0 left-0" id="logo">
                 {/* <video controls={false} muted autoPlay src="/intro.mp4" className="w-full h-full object-cover scale-105" ref={vidRef}/> */}
                 <Lottie 
-                    animationData={animationData} 
+                    animationData={preLoader} 
                     loop={false}
                     style={{ width: '100%', height: '100%' }} // Customize size
                     speed={2}
